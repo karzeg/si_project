@@ -1,30 +1,28 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title_book_list'|trans }}
+    {{ 'tag_list'|trans }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title_book_list'|trans }}</h1>
+    <h1>{{ 'tag_list'|trans }}</h1>
     {% if pagination is defined and pagination.items|length %}
 
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'book.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label_title'|trans, 'book.title') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label_description'|trans, 'book.description') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'tag.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_name'|trans, 'tag.name') }}</th>
                 <th>{{ 'label_actions'|trans }}</th>
             </tr>
             </thead>
             <tbody>
-            {% for book in pagination.items %}
+            {% for tag in pagination.items %}
                 <tr>
-                    <td>{{ book.id }}</td>
-                    <td>{{ book.title }}</td>
-                    <td>{{ book.description }}</td>
+                    <td>{{ tag.id }}</td>
+                    <td>{{ tag.name }}</td>
                     <td>
-                        <a href="{{ url('book_show', {id: book.id}) }}" title="{{ 'action_view'|trans }}">
+                        <a href="{{ url('tag_show', {id: tag.id}) }}" title="{{ 'action_view'|trans }}">
                             {{ 'action_view'|trans }}
                         </a>
                     </td>

@@ -1,14 +1,15 @@
 <?php
 /**
- * Author entity.
+ * Author entity
  */
 
 namespace App\Entity;
 
+use App\Repository\AuthorRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Author.
+ * Class Author
  *
  * @ORM\Entity(repositoryClass="App\Repository\AuthorRepository")
  * @ORM\Table(name="authors")
@@ -16,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Author
 {
     /**
-     * Primary key.
+     * Primary key
      *
      * @var int
      *
@@ -27,7 +28,7 @@ class Author
     private $id;
 
     /**
-     * Firstname.
+     * Firstname
      *
      * @var string
      *
@@ -39,7 +40,7 @@ class Author
     private $firstname;
 
     /**
-     * Lastname.
+     * Lastname
      *
      * @var string
      *
@@ -51,7 +52,7 @@ class Author
     private $lastname;
 
     /**
-     * Getter for Id.
+     * Getter for Id
      *
      * @return int|null Result
      */
@@ -61,7 +62,7 @@ class Author
     }
 
     /**
-     * Getter for Firstname.
+     * Getter for Firstname
      *
      * @return string|null Firstname
      */
@@ -71,7 +72,7 @@ class Author
     }
 
     /**
-     * Setter for Firstname.
+     * Setter for Firstname
      */
     public function setFirstname(string $firstname): void
     {
@@ -79,7 +80,7 @@ class Author
     }
 
     /**
-     * Getter for Lastname.
+     * Getter for Lastname
      *
      * @return string|null $lastname
      */
@@ -89,7 +90,7 @@ class Author
     }
 
     /**
-     * Setter for Lastname.
+     * Setter for Lastname
      */
     public function setLastname(string $lastname): void
     {

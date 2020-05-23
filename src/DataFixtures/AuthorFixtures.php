@@ -1,6 +1,6 @@
 <?php
 /**
- * Author fixture.
+ * Author fixture
  */
 
 namespace App\DataFixtures;
@@ -9,12 +9,12 @@ use App\Entity\Author;
 use Doctrine\Persistence\ObjectManager;
 
 /**
- * Class AuthorFixtures.
+ * Class AuthorFixtures
  */
 class AuthorFixtures extends AbstractBaseFixtures
 {
     /**
-     * Load data.
+     * Load data
      *
      * @param \Doctrine\Persistence\ObjectManager $manager Object manager
      */

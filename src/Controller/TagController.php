@@ -1,12 +1,12 @@
 <?php
 /**
- * Author controller
+ * Tag controller
  */
 
 namespace App\Controller;
 
-use App\Entity\Author;
-use App\Repository\AuthorRepository;
+use App\Entity\Tag;
+use App\Repository\TagRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,36 +14,36 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class AuthorController
+ * Class TagController
  *
- * @Route("/author")
+ * @Route("/tag")
  */
-class AuthorController extends AbstractController
+class TagController extends AbstractController
 {
     /**
      * Index action
      *
      * @param \Symfony\Component\HttpFoundation\Request $request          HTTP request
-     * @param \App\Repository\AuthorRepository          $authorRepository Author repository
+     * @param \App\Repository\TagRepository          tagrepository Tag repository
      * @param \Knp\Component\Pager\PaginatorInterface   $paginator        Paginator
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
      * @Route(
      *     "/",
-     *     name="author_index",
+     *     name="tag_index",
      * )
      */
-    public function index(Request $request, AuthorRepository $authorRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request, TagRepository $tagRepository, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
-            $authorRepository->queryAll(),
+            $tagRepository->queryAll(),
             $request->query->getInt('page', 1),
-            AuthorRepository::PAGINATOR_ITEMS_PER_PAGE
+            TagRepository::PAGINATOR_ITEMS_PER_PAGE
         );
 
         return $this->render(
-            'author/index.html.twig',
+            'tag/index.html.twig',
             ['pagination' => $pagination]
         );
     }
@@ -51,22 +51,22 @@ class AuthorController extends AbstractController
     /**
      * Show action
      *
-     * @param \App\Entity\Author $author Author entity
+     * @param \App\Entity\Tag tag Tag entity
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
      * @Route(
      *     "/{id}",
      *     methods={"GET"},
-     *     name="author_show",
+     *     name="tag_show",
      *     requirements={"id": "[1-9]\d*"},
      * )
      */
-    public function show(Author $author): Response
+    public function show(Tag $tag): Response
     {
         return $this->render(
-            'author/show.html.twig',
-            ['author' => $author]
+            'tag/show.html.twig',
+            ['tag' => $tag]
         );
     }
 }

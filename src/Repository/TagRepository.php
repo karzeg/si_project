@@ -1,23 +1,23 @@
 <?php
 /**
- * Author repository
+ * Tag repository
  */
 
 namespace App\Repository;
 
-use App\Entity\Author;
+use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 
 /**
- * Class AuthorRepository
+ * Class TagRepository
  *
- * @method Author|null find($id, $lockMode = null, $lockVersion = null)
- * @method Author|null findOneBy(array $criteria, array $orderBy = null)
- * @method Author[]    findAll()
- * @method Author[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Tag|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Tag|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Tag[]    findAll()
+ * @method Tag[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AuthorRepository extends ServiceEntityRepository
+class TagRepository extends ServiceEntityRepository
 {
     /**
      * Items per page.
@@ -31,13 +31,13 @@ class AuthorRepository extends ServiceEntityRepository
     const PAGINATOR_ITEMS_PER_PAGE = 5;
 
     /**
-     * AuthorRepository constructor
+     * TagRepository constructor
      *
      * @param \Doctrine\Common\Persistence\ManagerRegistry $registry Manager registry
      */
     public function __construct(\Doctrine\Common\Persistence\ManagerRegistry $registry)
     {
-        parent::__construct($registry, Author::class);
+        parent::__construct($registry, Tag::class);
     }
 
     /**
@@ -48,8 +48,8 @@ class AuthorRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->select('author')
-            ->orderBy('author.lastname', 'ASC');
+            ->select('tag')
+            ->orderBy('tag.name', 'ASC');
     }
 
     /**
@@ -61,6 +61,6 @@ class AuthorRepository extends ServiceEntityRepository
      */
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
-        return $queryBuilder ?? $this->createQueryBuilder('author');
+        return $queryBuilder ?? $this->createQueryBuilder('tag');
     }
 }
