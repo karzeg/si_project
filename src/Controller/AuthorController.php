@@ -1,12 +1,12 @@
 <?php
 /**
- * Book controller.
+ * Author controller.
  */
 
 namespace App\Controller;
 
-use App\Entity\Book;
-use App\Repository\BookRepository;
+use App\Entity\Author;
+use App\Repository\AuthorRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,36 +14,36 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class BookController.
+ * Class AuthorController.
  *
- * @Route("/book")
+ * @Route("/author")
  */
-class BookController extends AbstractController
+class AuthorController extends AbstractController
 {
     /**
      * Index action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request        HTTP request
-     * @param \App\Repository\BookRepository            $bookRepository Book repository
-     * @param \Knp\Component\Pager\PaginatorInterface   $paginator      Paginator
+     * @param \Symfony\Component\HttpFoundation\Request $request          HTTP request
+     * @param \App\Repository\AuthorRepository          $authorRepository Author repository
+     * @param \Knp\Component\Pager\PaginatorInterface   $paginator        Paginator
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
      * @Route(
      *     "/",
-     *     name="book_index",
+     *     name="author_index",
      * )
      */
-    public function index(Request $request, BookRepository $bookRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request, AuthorRepository $authorRepository, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
-            $bookRepository->queryAll(),
+            $authorRepository->queryAll(),
             $request->query->getInt('page', 1),
-            BookRepository::PAGINATOR_ITEMS_PER_PAGE
+            AuthorRepository::PAGINATOR_ITEMS_PER_PAGE
         );
 
         return $this->render(
-            'book/index.html.twig',
+            'author/index.html.twig',
             ['pagination' => $pagination]
         );
     }
@@ -51,22 +51,22 @@ class BookController extends AbstractController
     /**
      * Show action.
      *
-     * @param \App\Entity\Book $book Book entity
+     * @param \App\Entity\Author $author Author entity
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
      * @Route(
      *     "/{id}",
      *     methods={"GET"},
-     *     name="book_show",
+     *     name="author_show",
      *     requirements={"id": "[1-9]\d*"},
      * )
      */
-    public function show(Book $book): Response
+    public function show(Author $author): Response
     {
         return $this->render(
-            'book/show.html.twig',
-            ['book' => $book]
+            'author/show.html.twig',
+            ['author' => $author]
         );
     }
 }

@@ -1,23 +1,23 @@
 <?php
 /**
- * Book repository.
+ * Author repository.
  */
 
 namespace App\Repository;
 
-use App\Entity\Book;
+use App\Entity\Author;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 
 /**
- * Class BookRepository.
+ * Class AuthorRepository.
  *
- * @method Book|null find($id, $lockMode = null, $lockVersion = null)
- * @method Book|null findOneBy(array $criteria, array $orderBy = null)
- * @method Book[]    findAll()
- * @method Book[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Author|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Author|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Author[]    findAll()
+ * @method Author[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class BookRepository extends ServiceEntityRepository
+class AuthorRepository extends ServiceEntityRepository
 {
     /**
      * Items per page.
@@ -31,13 +31,13 @@ class BookRepository extends ServiceEntityRepository
     const PAGINATOR_ITEMS_PER_PAGE = 5;
 
     /**
-     * BookRepository constructor.
+     * AuthorRepository constructor.
      *
      * @param \Doctrine\Common\Persistence\ManagerRegistry $registry Manager registry
      */
     public function __construct(\Doctrine\Common\Persistence\ManagerRegistry $registry)
     {
-        parent::__construct($registry, Book::class);
+        parent::__construct($registry, Author::class);
     }
 
     /**
@@ -48,8 +48,8 @@ class BookRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->select('book')
-            ->orderBy('book.title', 'ASC');
+            ->select('author')
+            ->orderBy('author.lastname', 'ASC');
     }
 
     /**
@@ -61,6 +61,6 @@ class BookRepository extends ServiceEntityRepository
      */
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
-        return $queryBuilder ?? $this->createQueryBuilder('book');
+        return $queryBuilder ?? $this->createQueryBuilder('author');
     }
 }

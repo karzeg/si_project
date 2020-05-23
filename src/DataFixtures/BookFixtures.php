@@ -20,7 +20,7 @@ class BookFixtures extends AbstractBaseFixtures
      */
     public function loadData(ObjectManager $manager): void
     {
-        $this->createMany(10, 'books', function ($i) {
+        $this->createMany(10, 'book', function ($i) {
             $book = new Book();
             $book->setTitle($this->faker->word);
             $book->setDescription($this->faker->sentence);

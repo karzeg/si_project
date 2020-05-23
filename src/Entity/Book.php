@@ -1,11 +1,7 @@
 <?php
-/**
- * Book entity.
- */
 
 namespace App\Entity;
 
-use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,76 +24,72 @@ class Book
     private $id;
 
     /**
-     * Title.
-     *
-     * @var string
-     *
-     * @ORM\Column(
-     *     type="string",
-     *     length=50,
-     * )
-     */
+    * Title
+    *
+    * @var string
+    *
+    * @ORM\Column(
+    *     type="string",
+    *     length=45
+    *)
+    */
     private $title;
 
     /**
-     * Description.
-     *
-     * @var string
-     *
-     * @ORM\Column(
-     *     type="string",
-     *     length=200,
-     * )
-     */
+    * Description
+    *
+    * @var string
+    *
+    * @ORM\Column(
+    *     type="string",
+    *     length=200
+    *)
+    */
     private $description;
 
     /**
-     * Getter for Id.
-     *
-     * @return int|null Result
-     */
+    * Getter for Id.
+    *
+    * @return int|null Result
+    */
     public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
-     * Getter for Title.
-     *
-     * @return string|null Title
-     */
+    * Getter for Title
+    *
+    * @return string|null Title
+    */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
     /**
-     * Setter for Title.
-     *
-     * @param string $title Title
-     */
+    * Setter for Title
+    */
     public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
     /**
-     * Getter for Description.
-     *
-     * @return string|null Description
-     */
+    * Getter for Description
+    *
+    * @return string|null $description
+    */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
     /**
-     * Setter for Description
-     *
-     * @param string $description Description
-     */
+    * Setter for Description
+    */
     public function setDescription(string $description): void
     {
-        $this->title = $description;
+        $this->description = $description;
     }
 }
