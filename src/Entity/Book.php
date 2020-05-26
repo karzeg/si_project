@@ -1,4 +1,7 @@
 <?php
+/**
+ * Book entity
+ */
 
 namespace App\Entity;
 
@@ -6,7 +9,7 @@ use App\Repository\BookRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Book.
+ * Class Book
  *
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
  * @ORM\Table(name="books")
@@ -14,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Book
 {
     /**
-     * Primary key.
+     * Primary key
      *
      * @var int
      *
@@ -49,7 +52,7 @@ class Book
     private $description;
 
     /**
-    * Getter for Id.
+    * Getter for Id
     *
     * @return int|null Result
     */
