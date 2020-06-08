@@ -8,6 +8,7 @@ namespace App\Repository;
 use App\Entity\Author;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * Class AuthorRepository
@@ -28,7 +29,7 @@ class AuthorRepository extends ServiceEntityRepository
      *
      * @constant int
      */
-    const PAGINATOR_ITEMS_PER_PAGE = 5;
+    const PAGINATOR_ITEMS_PER_PAGE = 10;
 
     /**
      * AuthorRepository constructor

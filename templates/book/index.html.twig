@@ -11,18 +11,20 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'book.id') }}</th>
+{#                <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'book.id') }}</th>#}
                 <th>{{ knp_pagination_sortable(pagination, 'label_title'|trans, 'book.title') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label_description'|trans, 'book.description') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_firstname'|trans, 'book.firstname') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_lastname'|trans, 'book.lastname') }}</th>
                 <th>{{ 'label_actions'|trans }}</th>
             </tr>
             </thead>
             <tbody>
             {% for book in pagination.items %}
                 <tr>
-                    <td>{{ book.id }}</td>
+{#                    <td>{{ book.id }}</td>#}
                     <td>{{ book.title }}</td>
-                    <td>{{ book.description }}</td>
+                    <td>{{ book.author.firstname }}</td>
+                    <td>{{ book.author.lastname }}</td>
                     <td>
                         <a href="{{ url('book_show', {id: book.id}) }}" title="{{ 'action_view'|trans }}">
                             {{ 'action_view'|trans }}

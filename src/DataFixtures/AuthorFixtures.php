@@ -20,7 +20,7 @@ class AuthorFixtures extends AbstractBaseFixtures
      */
     public function loadData(ObjectManager $manager): void
     {
-        $this->createMany(10, 'author', function ($i) {
+        $this->createMany(10, 'authors', function ($i) {
             $author = new Author();
             $author->setFirstname($this->faker->word);
             $author->setLastname($this->faker->word);

@@ -1,25 +1,24 @@
 <?php
 /**
- * Userdata entity
+ * UserData entity
  */
-
 namespace App\Entity;
 
 use App\Repository\UserDataRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Userdata
+ * Class UserData
  *
- * @ORM\Entity(repositoryClass="App\Repository\AuthorRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="users_data")
  */
 class UserData
 {
     /**
      * Primary key
-     *
-     * @var int
      *
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -34,8 +33,7 @@ class UserData
      *
      * @ORM\Column(
      *     type="string",
-     *     length=45
-     *)
+     *     length=45)
      */
     private $firstname;
 
@@ -58,15 +56,31 @@ class UserData
      *
      * @ORM\Column(
      *     type="string",
-     *     length=45
+     *     length=60
      *)
      */
     private $email;
 
     /**
-     * Getter for Id
-     *
-     * @return int|null Result
+     * @ORM\OneToOne(targetEntity=User::class, mappedBy="userData", cascade={"persist", "remove"})
+     */
+    private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Favourite::class, mappedBy="userData")
+     */
+    private $favourites;
+
+    /**
+     * UserData constructor
+     */
+    public function __construct()
+    {
+        $this->favourites = new ArrayCollection();
+    }
+
+    /**
+     * @return int|null
      */
     public function getId(): ?int
     {
@@ -74,9 +88,7 @@ class UserData
     }
 
     /**
-     * Getter for Firstname
-     *
-     * @return string|null Firstname
+     * @return string|null
      */
     public function getFirstname(): ?string
     {
@@ -84,17 +96,19 @@ class UserData
     }
 
     /**
-     * Setter for Firstname
+     * @param string $firstname
+     *
+     * @return $this
      */
-    public function setFirstname(string $firstname): void
+    public function setFirstname(string $firstname): self
     {
         $this->firstname = $firstname;
+
+        return $this;
     }
 
     /**
-     * Getter for Lastname
-     *
-     * @return string|null $lastname
+     * @return string|null
      */
     public function getLastname(): ?string
     {
@@ -102,17 +116,19 @@ class UserData
     }
 
     /**
-     * Setter for Lastname
+     * @param string $lastname
+     *
+     * @return $this
      */
-    public function setLastname(string $lastname): void
+    public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
+
+        return $this;
     }
 
     /**
-     * Getter for Email
-     *
-     * @return string|null $email
+     * @return string|null
      */
     public function getEmail(): ?string
     {
@@ -120,10 +136,80 @@ class UserData
     }
 
     /**
-     * Setter for email
+     * @param string $email
+     *
+     * @return $this
      */
-    public function setEmail(string $email): void
+    public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * @return User|null
+     */
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     *
+     * @return $this
+     */
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
+
+        // set the owning side of the relation if necessary
+        if ($user->getUserData() !== $this) {
+            $user->setUserData($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Favourite[]
+     */
+    public function getFavourites(): Collection
+    {
+        return $this->favourites;
+    }
+
+    /**
+     * @param Favourite $favourite
+     *
+     * @return $this
+     */
+    public function addFavourite(Favourite $favourite): self
+    {
+        if (!$this->favourites->contains($favourite)) {
+            $this->favourites[] = $favourite;
+            $favourite->setUserData($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Favourite $favourite
+     *
+     * @return $this
+     */
+    public function removeFavourite(Favourite $favourite): self
+    {
+        if ($this->favourites->contains($favourite)) {
+            $this->favourites->removeElement($favourite);
+            // set the owning side to null (unless already changed)
+            if ($favourite->getUserData() === $this) {
+                $favourite->setUserData(null);
+            }
+        }
+
+        return $this;
     }
 }

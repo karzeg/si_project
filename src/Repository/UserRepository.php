@@ -1,22 +1,23 @@
 <?php
 /**
- * Favourite Repository
+ * User repository
  */
-
 namespace App\Repository;
 
-use App\Entity\Favourite;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Favourite|null find($id, $lockMode = null, $lockVersion = null)
- * @method Favourite|null findOneBy(array $criteria, array $orderBy = null)
- * @method Favourite[]    findAll()
- * @method Favourite[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * Class UserRepository
+ *
+ * @method User|null find($id, $lockMode = null, $lockVersion = null)
+ * @method User|null findOneBy(array $criteria, array $orderBy = null)
+ * @method User[]    findAll()
+ * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class FavouriteRepository extends ServiceEntityRepository
+class UserRepository extends ServiceEntityRepository
 {
     /**
      * Items per page.
@@ -30,13 +31,13 @@ class FavouriteRepository extends ServiceEntityRepository
     const PAGINATOR_ITEMS_PER_PAGE = 10;
 
     /**
-     * FavouriteRepository constructor
+     * UserRepository constructor
      *
      * @param \Doctrine\Common\Persistence\ManagerRegistry $registry Manager registry
      */
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Favourite::class);
+        parent::__construct($registry, User::class);
     }
 
     /**
@@ -47,10 +48,9 @@ class FavouriteRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->select('favourite')
-            ->orderBy('favourite.id', 'ASC');
+            ->select('user')
+            ->orderBy('user.id', 'ASC');
     }
-
     /**
      * Get or create new query builder.
      *
@@ -60,6 +60,7 @@ class FavouriteRepository extends ServiceEntityRepository
      */
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
-        return $queryBuilder ?? $this->createQueryBuilder('favourite');
+        return $queryBuilder ?? $this->createQueryBuilder('user');
     }
 }
+

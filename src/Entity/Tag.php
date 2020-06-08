@@ -6,6 +6,8 @@
 namespace App\Entity;
 
 use App\Repository\TagRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -40,6 +42,19 @@ class Tag
     private $name;
 
     /**
+     * @ORM\ManyToMany(targetEntity=Book::class, inversedBy="tags")
+     */
+    private $book;
+
+    /**
+     * Tag constructor
+     */
+    public function __construct()
+    {
+        $this->book = new ArrayCollection();
+    }
+
+    /**
     * Getter for Id.
     *
     * @return int|null Result
@@ -65,5 +80,41 @@ class Tag
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return Collection|Book[]
+     */
+    public function getBook(): Collection
+    {
+        return $this->book;
+    }
+
+    /**
+     * @param Book $book
+     *
+     * @return $this
+     */
+    public function addBook(Book $book): self
+    {
+        if (!$this->book->contains($book)) {
+            $this->book[] = $book;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Book $book
+     *
+     * @return $this
+     */
+    public function removeBook(Book $book): self
+    {
+        if ($this->book->contains($book)) {
+            $this->book->removeElement($book);
+        }
+
+        return $this;
     }
 }

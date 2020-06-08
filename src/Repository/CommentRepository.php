@@ -1,22 +1,24 @@
 <?php
 /**
- * Favourite Repository
+ * Comment repository
  */
 
 namespace App\Repository;
 
-use App\Entity\Favourite;
+use App\Entity\Comment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Favourite|null find($id, $lockMode = null, $lockVersion = null)
- * @method Favourite|null findOneBy(array $criteria, array $orderBy = null)
- * @method Favourite[]    findAll()
- * @method Favourite[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * Class CommentRepository
+ *
+ * @method Comment|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Comment|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Comment[]    findAll()
+ * @method Comment[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class FavouriteRepository extends ServiceEntityRepository
+class CommentRepository extends ServiceEntityRepository
 {
     /**
      * Items per page.
@@ -30,13 +32,13 @@ class FavouriteRepository extends ServiceEntityRepository
     const PAGINATOR_ITEMS_PER_PAGE = 10;
 
     /**
-     * FavouriteRepository constructor
+     * CommentRepository constructor
      *
      * @param \Doctrine\Common\Persistence\ManagerRegistry $registry Manager registry
      */
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(\Doctrine\Common\Persistence\ManagerRegistry $registry)
     {
-        parent::__construct($registry, Favourite::class);
+        parent::__construct($registry, Comment::class);
     }
 
     /**
@@ -47,8 +49,8 @@ class FavouriteRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->select('favourite')
-            ->orderBy('favourite.id', 'ASC');
+            ->select('comment')
+            ->orderBy('comment.id', 'ASC');
     }
 
     /**
@@ -60,6 +62,6 @@ class FavouriteRepository extends ServiceEntityRepository
      */
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
-        return $queryBuilder ?? $this->createQueryBuilder('favourite');
+        return $queryBuilder ?? $this->createQueryBuilder('comment');
     }
 }

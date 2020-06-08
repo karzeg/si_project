@@ -1,6 +1,6 @@
 <?php
 /**
- * Book repository.
+ * Book repository
  */
 
 namespace App\Repository;
@@ -10,7 +10,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 
 /**
- * Class BookRepository.
+ * Class BookRepository
  *
  * @method Book|null find($id, $lockMode = null, $lockVersion = null)
  * @method Book|null findOneBy(array $criteria, array $orderBy = null)
@@ -28,7 +28,7 @@ class BookRepository extends ServiceEntityRepository
      *
      * @constant int
      */
-    const PAGINATOR_ITEMS_PER_PAGE = 5;
+    const PAGINATOR_ITEMS_PER_PAGE = 10;
 
     /**
      * BookRepository constructor.

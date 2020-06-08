@@ -29,10 +29,10 @@ class UserDataRepository extends ServiceEntityRepository
      *
      * @constant int
      */
-    const PAGINATOR_ITEMS_PER_PAGE = 5;
+    const PAGINATOR_ITEMS_PER_PAGE = 10;
 
     /**
-     * AuthorRepository constructor
+     * UserDataRepository constructor
      *
      * @param \Doctrine\Common\Persistence\ManagerRegistry $registry Manager registry
      */
@@ -42,7 +42,7 @@ class UserDataRepository extends ServiceEntityRepository
     }
 
     /**
-     * Query all records
+     * Query all records.
      *
      * @return \Doctrine\ORM\QueryBuilder Query builder
      */
@@ -50,11 +50,11 @@ class UserDataRepository extends ServiceEntityRepository
     {
         return $this->getOrCreateQueryBuilder()
             ->select('userdata')
-            ->orderBy('userdata.lastname', 'ASC');
+            ->orderBy('userdata.id', 'ASC');
     }
 
     /**
-     * Get or create new query builder
+     * Get or create new query builder.
      *
      * @param \Doctrine\ORM\QueryBuilder|null $queryBuilder Query builder
      *
@@ -65,3 +65,4 @@ class UserDataRepository extends ServiceEntityRepository
         return $queryBuilder ?? $this->createQueryBuilder('userdata');
     }
 }
+

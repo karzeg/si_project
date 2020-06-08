@@ -6,6 +6,8 @@
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -40,6 +42,19 @@ class Category
     private $content;
 
     /**
+     * @ORM\OneToMany(targetEntity=Book::class, mappedBy="category")
+     */
+    private $books;
+
+    /**
+     * Category constructor
+     */
+    public function __construct()
+    {
+        $this->books = new ArrayCollection();
+    }
+
+    /**
      * Getter for Id
      *
      * @return int|null Result
@@ -65,5 +80,46 @@ class Category
     public function setContent(string $content): void
     {
         $this->content = $content;
+    }
+
+    /**
+     * @return Collection|Book[]
+     */
+    public function getBooks(): Collection
+    {
+        return $this->books;
+    }
+
+    /**
+     * @param Book $book
+     *
+     * @return $this
+     */
+    public function addBook(Book $book): self
+    {
+        if (!$this->books->contains($book)) {
+            $this->books[] = $book;
+            $book->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Book $book
+     *
+     * @return $this
+     */
+    public function removeBook(Book $book): self
+    {
+        if ($this->books->contains($book)) {
+            $this->books->removeElement($book);
+            // set the owning side to null (unless already changed)
+            if ($book->getCategory() === $this) {
+                $book->setCategory(null);
+            }
+        }
+
+        return $this;
     }
 }

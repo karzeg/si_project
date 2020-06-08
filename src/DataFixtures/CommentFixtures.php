@@ -1,17 +1,17 @@
 <?php
 /**
- * Tag fixture
+ * Comment fixtures
  */
 
 namespace App\DataFixtures;
 
-use App\Entity\Tag;
+use App\Entity\Comment;
 use Doctrine\Persistence\ObjectManager;
 
 /**
- * Class TagFixtures
+ * Class CommentFixtures
  */
-class TagFixtures extends AbstractBaseFixtures
+class CommentFixtures extends AbstractBaseFixtures
 {
     /**
      * Load data
@@ -20,13 +20,14 @@ class TagFixtures extends AbstractBaseFixtures
      */
     public function loadData(ObjectManager $manager): void
     {
-        $this->createMany(10, 'tags', function ($i) {
-            $tag = new Tag();
-            $tag->setName($this->faker->word);
+        $this->createMany(10, 'comments', function ($i) {
+            $comment = new Comment();
+            $comment->setContent($this->faker->sentence);
 
-            return $tag;
+            return $comment;
         });
 
         $manager->flush();
     }
+
 }
