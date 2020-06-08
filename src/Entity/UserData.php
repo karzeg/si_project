@@ -72,11 +72,17 @@ class UserData
     private $favourites;
 
     /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="userData")
+     */
+    private $comments;
+
+    /**
      * UserData constructor
      */
     public function __construct()
     {
         $this->favourites = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     /**
@@ -207,6 +213,47 @@ class UserData
             // set the owning side to null (unless already changed)
             if ($favourite->getUserData() === $this) {
                 $favourite->setUserData(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param Comment $comment
+     *
+     * @return $this
+     */
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setUserData($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Comment $comment
+     *
+     * @return $this
+     */
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getUserData() === $this) {
+                $comment->setUserData(null);
             }
         }
 
