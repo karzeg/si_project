@@ -8,11 +8,8 @@
     <h1>{{ 'category_details'|trans({'%id%': category.id|default('')}) }}</h1>
     {% if category is defined and category|length %}
         <dl class="dl-horizontal">
-            <dt>{{ 'label_id'|trans }}</dt>
-            <dd>{{ category.id }}</dd>
             <dt>{{ 'label_name'|trans }}</dt>
             <dd>{{ category.content }}</dd>
-        </dl>
         <p>
             <a href="{{ url('category_index') }}" title="{{ 'action_back_to_list'|trans }}">
                 {{ 'action_back_to_list'|trans }}

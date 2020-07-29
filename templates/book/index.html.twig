@@ -7,7 +7,6 @@
 {% block body %}
     <h1>{{ 'title_book_list'|trans }}</h1>
     {% if pagination is defined and pagination.items|length %}
-
         <table class="table table-striped">
             <thead>
             <tr>
@@ -15,6 +14,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label_title'|trans, 'book.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label_firstname'|trans, 'book.firstname') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label_lastname'|trans, 'book.lastname') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_category'|trans, 'book.category') }}</th>
                 <th>{{ 'label_actions'|trans }}</th>
             </tr>
             </thead>
@@ -25,9 +25,16 @@
                     <td>{{ book.title }}</td>
                     <td>{{ book.author.firstname }}</td>
                     <td>{{ book.author.lastname }}</td>
+                    <td>{{ book.category.content }}</td>
                     <td>
                         <a href="{{ url('book_show', {id: book.id}) }}" title="{{ 'action_view'|trans }}">
                             {{ 'action_view'|trans }}
+                        </a>
+                        <a href="{{ url('book_edit', {id: book.id}) }}" title="{{ 'action_edit'|trans }}">
+                            {{ 'action_edit'|trans }}
+                        </a>
+                        <a href="{{ url('book_delete', {id: book.id}) }}" title="{{ 'action_delete'|trans }}">
+                            {{ 'action_delete'|trans }}
                         </a>
                     </td>
                 </tr>

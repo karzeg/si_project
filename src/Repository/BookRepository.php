@@ -8,6 +8,7 @@ namespace App\Repository;
 use App\Entity\Book;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
+use App\Form\BookType;
 
 /**
  * Class BookRepository
@@ -53,6 +54,20 @@ class BookRepository extends ServiceEntityRepository
     }
 
     /**
+     * Save record.
+     *
+     * @param \App\Entity\Book $book Book entity
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function save(Book $book): void
+    {
+        $this->_em->persist($book);
+        $this->_em->flush($book);
+    }
+
+    /**
      * Get or create new query builder.
      *
      * @param \Doctrine\ORM\QueryBuilder|null $queryBuilder Query builder
@@ -62,5 +77,18 @@ class BookRepository extends ServiceEntityRepository
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
         return $queryBuilder ?? $this->createQueryBuilder('book');
+    }
+    /**
+     * Delete record.
+     *
+     * @param \App\Entity\Book $book Book entity
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function delete(Book $book): void
+    {
+        $this->_em->remove($book);
+        $this->_em->flush($book);
     }
 }
