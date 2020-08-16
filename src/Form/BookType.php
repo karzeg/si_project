@@ -54,18 +54,19 @@ class BookType extends AbstractType
             'category',
             EntityType::class,
             array(
+                'label' => 'label_category',
                 'class' => "App\Entity\Category",
                 'choice_label' => 'content'
             )
         );
 
-        $builder->add(
-            'author',
-            AuthorType::class,
-            array(
-                'choice_label' => 'author'
-            )
-        );
+//        $builder->add(
+//            'author',
+//            AuthorType::class,
+//            array(
+//                'choice_label' => 'author'
+//            )
+//        );
     }
 
     /**

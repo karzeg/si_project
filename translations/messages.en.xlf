@@ -10,6 +10,22 @@
                 <source>action_view</source>
                 <target>View</target>
             </trans-unit>
+            <trans-unit id="action_save">
+                <source>action_save</source>
+                <target>Save</target>
+            </trans-unit>
+            <trans-unit id="action_create">
+                <source>action_create</source>
+                <target>Create</target>
+            </trans-unit>
+            <trans-unit id="action_edit">
+                <source>action_edit</source>
+                <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="action_delete">
+                <source>action_delete</source>
+                <target>Delete</target>
+            </trans-unit>
             <trans-unit id="label_actions">
                 <source>label_actions</source>
                 <target>Actions</target>
@@ -38,6 +54,10 @@
                 <source>message_empty_list</source>
                 <target>Empty list</target>
             </trans-unit>
+            <trans-unit id="message_item_not_found">
+                <source>message_item_not_found</source>
+                <target>Item not found.</target>
+            </trans-unit>
             <trans-unit id="title_book_details">
                 <source>title_book_details</source>
                 <target>Details</target>
@@ -49,6 +69,74 @@
             <trans-unit id="title_record_list">
                 <source>title_record_list</source>
                 <target>Records list</target>
+            </trans-unit>
+            <trans-unit id="author_create">
+                <source>autor_create</source>
+                <target>Create author</target>
+            </trans-unit>
+            <trans-unit id="author_edit">
+                <source>autor_edit</source>
+                <target>Edit author</target>
+            </trans-unit>
+            <trans-unit id="author_delete">
+                <source>author_delete</source>
+                <target>Delete author</target>
+            </trans-unit>
+            <trans-unit id="author_list">
+                <source>author_list</source>
+                <target>Authors</target>
+            </trans-unit>
+            <trans-unit id="author_details">
+                <source>author_details</source>
+                <target>More details</target>
+            </trans-unit>
+            <trans-unit id="label_firstname">
+                <source>label_firstname</source>
+                <target>Firstname</target>
+            </trans-unit>
+            <trans-unit id="label_lastname">
+                <source>label_lastname</source>
+                <target>Lastname</target>
+            </trans-unit>
+            <trans-unit id="label_name">
+                <source>label_name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="book_create">
+                <source>book_create</source>
+                <target>Create book</target>
+            </trans-unit>
+            <trans-unit id="book_edit">
+                <source>book_edit</source>
+                <target>Edit book</target>
+            </trans-unit>
+            <trans-unit id="book_delete">
+                <source>book_delete</source>
+                <target>Delete book</target>
+            </trans-unit>
+            <trans-unit id="label_category">
+                <source>label_category</source>
+                <target>Category</target>
+            </trans-unit>
+            <trans-unit id="category_list">
+                <source>category_list</source>
+                <target>Categories</target>
+            </trans-unit>
+            <trans-unit id="category_details">
+                <source>category_details</source>
+                <target>More</target>
+            </trans-unit>
+            <trans-unit id="title_category_create">
+                <source>title_category_create</source>
+                <target>Create category</target>
+            </trans-unit>
+            <trans-unit id="title_category_edit">
+                <source>title_category_edit</source>
+                <target>Edit category</target>
+            </trans-unit>
+            <trans-unit id="title_category_delete">
+                <source>title_category_delete</source>
+                <target>Delete category</target>
             </trans-unit>
         </body>
     </file>

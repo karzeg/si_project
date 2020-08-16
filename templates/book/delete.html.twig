@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title_book_delete'|trans({'%id%': book.id|default('')}) }}
+    {{ 'book_delete'|trans({'%id%': book.id|default('')}) }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title_book_delete'|trans({'%id%': book.id|default('')}) }}</h1>
+    <h1>{{ 'book_delete'|trans({'%id%': book.id|default('')}) }}</h1>
     {{ form_start(form, { method: 'DELETE', action: url('book_delete', {id: book.id}) }) }}
     {{ form_widget(form) }}
     <div class="form-group row float-sm-right">

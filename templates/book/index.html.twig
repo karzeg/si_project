@@ -5,7 +5,13 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title_book_list'|trans }}</h1>
+    <h1>{{ 'title_book_list'|trans }}
+        <div class="form-group row float-sm-right">
+            <a href="{{ url('book_create') }}" class="btn btn-info">
+                {{ 'action_create'|trans }}
+            </a>
+        </div>
+    </h1>
     {% if pagination is defined and pagination.items|length %}
         <table class="table table-striped">
             <thead>

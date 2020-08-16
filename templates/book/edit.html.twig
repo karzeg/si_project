@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title_book_edit'|trans({'%id%': book.id|default('')}) }}
+    {{ 'book_edit'|trans({'%id%': book.id|default('')}) }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title_book_edit'|trans({'%id%': book.id|default('')}) }}</h1>
+    <h1>{{ 'book_edit'|trans({'%id%': book.id|default('')}) }}</h1>
     {{ form_start(form, { method: 'PUT', action: url('book_edit', {id: book.id}) }) }}
     {{ form_widget(form) }}
     <div class="form-group row float-sm-right">

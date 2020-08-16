@@ -105,4 +105,88 @@ class AuthorController extends AbstractController
             ['form' => $form->createView()]
         );
     }
+    /**
+     * Edit action.
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request          HTTP request
+     * @param \App\Entity\Author                        $author           Author entity
+     * @param \App\Repository\AuthorRepository          $authorRepository Author repository
+     *
+     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     *
+     * @Route(
+     *     "/{id}/edit",
+     *     methods={"GET", "PUT"},
+     *     requirements={"id": "[1-9]\d*"},
+     *     name="author_edit",
+     * )
+     */
+    public function edit(Request $request, Author $author, AuthorRepository $authorRepository): Response
+    {
+        $form = $this->createForm(AuthorType::class, $author, ['method' => 'PUT']);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $authorRepository->save($author);
+
+            $this->addFlash('success', 'message_updated_successfully');
+
+            return $this->redirectToRoute('author_index');
+        }
+
+        return $this->render(
+            'author/edit.html.twig',
+            [
+                'form' => $form->createView(),
+                'author' => $author,
+            ]
+        );
+    }
+
+    /**
+     * Delete action.
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request          HTTP request
+     * @param \App\Entity\Author                        $author           Author entity
+     * @param \App\Repository\AuthorRepository          $authorRepository Author repository
+     *
+     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     *
+     * @Route(
+     *     "/{id}/delete",
+     *     methods={"GET", "DELETE"},
+     *     requirements={"id": "[1-9]\d*"},
+     *     name="author_delete",
+     * )
+     */
+    public function delete(Request $request, Author $author, AuthorRepository $authorRepository): Response
+    {
+        $form = $this->createForm(AuthorType::class, $author, ['method' => 'DELETE']);
+        $form->handleRequest($request);
+
+        if ($request->isMethod('DELETE') && !$form->isSubmitted()) {
+            $form->submit($request->request->get($form->getName()));
+        }
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $authorRepository->delete($author);
+            $this->addFlash('success', 'message.deleted_successfully');
+
+            return $this->redirectToRoute('author_index');
+        }
+
+        return $this->render(
+            'author/delete.html.twig',
+            [
+                'form' => $form->createView(),
+                'author' => $author,
+            ]
+        );
+    }
 }

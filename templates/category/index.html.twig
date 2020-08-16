@@ -5,7 +5,13 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'category_list'|trans }}</h1>
+    <h1>{{ 'category_list'|trans }}
+        <div class="form-group row float-sm-right">
+            <a href="{{ url('category_create') }}" class="btn btn-info">
+                {{ 'action_create'|trans }}
+            </a>
+        </div>
+    </h1>
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
@@ -27,9 +33,6 @@
                     <td>
                         <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action_view'|trans }}">
                             {{ 'action_view'|trans }}
-                        </a>
-                        <a href="{{ url('category_create', {id: category.id}) }}" title="{{ 'action_create'|trans }}">
-                            {{ 'action_create'|trans }}
                         </a>
                         <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action_edit'|trans }}">
                             {{ 'action_edit'|trans }}
