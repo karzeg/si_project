@@ -19,7 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Book
 {
     /**
-     * Primary key
+     * Primary key.
      *
      * @var int
      *
@@ -30,13 +30,13 @@ class Book
     private $id;
 
     /**
-    * Title
+    * Title.
     *
     * @var string
     *
     * @ORM\Column(
     *     type="string",
-    *     length=45
+    *     length=255
     *)
     */
     private $title;
@@ -55,12 +55,14 @@ class Book
 
     /**
      * @ORM\ManyToOne(targetEntity=Author::class, inversedBy="books")
+     *
      * @ORM\JoinColumn(nullable=false)
      */
     private $author;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="books")
+     *
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
@@ -76,7 +78,13 @@ class Book
     private $comments;
 
     /**
+     * Tags.
+     *
+     * @var array
+     *
      * @ORM\ManyToMany(targetEntity=Tag::class, mappedBy="book")
+     *
+     * @ORM\JoinTable(name="tasks_tags")
      */
     private $tags;
 
@@ -259,6 +267,8 @@ class Book
     }
 
     /**
+     * Getter for tags.
+     *
      * @return Collection|Tag[]
      */
     public function getTags(): Collection
@@ -267,6 +277,8 @@ class Book
     }
 
     /**
+     * Add tag to coletion.
+     *
      * @param Tag $tag
      *
      * @return $this
@@ -282,6 +294,8 @@ class Book
     }
 
     /**
+     * Remove tag from collection.
+     *
      * @param Tag $tag
      *
      * @return $this
