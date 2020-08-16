@@ -167,6 +167,12 @@ class AuthorController extends AbstractController
      */
     public function delete(Request $request, Author $author, AuthorRepository $authorRepository): Response
     {
+        if ($author->getBooks()->count()) {
+            $this->addFlash('warning', 'message_category_contains_tasks)');
+
+            return $this->redirectToRoute('author_index');
+        }
+
         $form = $this->createForm(AuthorType::class, $author, ['method' => 'DELETE']);
         $form->handleRequest($request);
 

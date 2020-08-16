@@ -75,7 +75,7 @@
                 <target>Nowy autor</target>
             </trans-unit>
             <trans-unit id="author_edit">
-                <source>autor_edit</source>
+                <source>author_edit</source>
                 <target>Edytuj autora</target>
             </trans-unit>
             <trans-unit id="author_delete">

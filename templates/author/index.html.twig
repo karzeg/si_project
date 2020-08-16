@@ -40,9 +40,11 @@
                         <a href="{{ url('author_edit', {id: author.id}) }}" title="{{ 'action_edit'|trans }}">
                             {{ 'action_edit'|trans }}
                         </a>
-                        <a href="{{ url('author_delete', {id: author.id}) }}" title="{{ 'action_delete'|trans }}">
-                            {{ 'action_delete'|trans }}
-                        </a>
+                        {% if not author.books|length %}
+                            <a href="{{ url('author_delete', {id: author.id}) }}" title="{{ 'action_delete'|trans }}">
+                                {{ 'action_delete'|trans }}
+                            </a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

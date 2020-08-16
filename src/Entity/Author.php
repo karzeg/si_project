@@ -9,9 +9,10 @@ use App\Repository\AuthorRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class Author
+ * Class Author.
  *
  * @ORM\Entity(repositoryClass="App\Repository\AuthorRepository")
  * @ORM\Table(name="authors")
@@ -19,7 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Author
 {
     /**
-     * Primary key
+     * Primary key.
      *
      * @var int
      *
@@ -59,7 +60,7 @@ class Author
     private $books;
 
     /**
-     * Author constructor
+     * Author constructor.
      */
     public function __construct()
     {
@@ -67,7 +68,7 @@ class Author
     }
 
     /**
-     * Getter for Id
+     * Getter for Id.
      *
      * @return int|null Result
      */
@@ -77,7 +78,7 @@ class Author
     }
 
     /**
-     * Getter for Firstname
+     * Getter for Firstname.
      *
      * @return string|null Firstname
      */
@@ -87,7 +88,9 @@ class Author
     }
 
     /**
-     * Setter for Firstname
+     * Setter for Firstname.
+     *
+     * @param string $firstname
      */
     public function setFirstname(string $firstname): void
     {
@@ -95,7 +98,7 @@ class Author
     }
 
     /**
-     * Getter for Lastname
+     * Getter for Lastname.
      *
      * @return string|null $lastname
      */
@@ -105,7 +108,9 @@ class Author
     }
 
     /**
-     * Setter for Lastname
+     * Setter for Lastname.
+     *
+     * @param string $lastname
      */
     public function setLastname(string $lastname): void
     {
@@ -113,6 +118,8 @@ class Author
     }
 
     /**
+     * Getter for books.
+     *
      * @return Collection|Book[]
      */
     public function getBooks(): Collection

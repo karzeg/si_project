@@ -71,11 +71,11 @@
                 <target>Records list</target>
             </trans-unit>
             <trans-unit id="author_create">
-                <source>autor_create</source>
+                <source>author_create</source>
                 <target>Create author</target>
             </trans-unit>
             <trans-unit id="author_edit">
-                <source>autor_edit</source>
+                <source>author_edit</source>
                 <target>Edit author</target>
             </trans-unit>
             <trans-unit id="author_delete">
