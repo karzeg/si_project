@@ -1,16 +1,17 @@
 <?php
 /**
- * Tag repository
+ * Tag repository.
  */
 
 namespace App\Repository;
 
 use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\QueryBuilder;
 
 /**
- * Class TagRepository
+ * Class TagRepository.
  *
  * @method Tag|null find($id, $lockMode = null, $lockVersion = null)
  * @method Tag|null findOneBy(array $criteria, array $orderBy = null)
@@ -31,7 +32,7 @@ class TagRepository extends ServiceEntityRepository
     const PAGINATOR_ITEMS_PER_PAGE = 10;
 
     /**
-     * TagRepository constructor
+     * TagRepository constructor.
      *
      * @param \Doctrine\Common\Persistence\ManagerRegistry $registry Manager registry
      */
@@ -40,6 +41,33 @@ class TagRepository extends ServiceEntityRepository
         parent::__construct($registry, Tag::class);
     }
 
+    /**
+     * Save record.
+     *
+     * @param \App\Entity\Tag $tag Tag entity
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function save(Tag $tag): void
+    {
+        $this->_em->persist($tag);
+        $this->_em->flush($tag);
+    }
+
+    /**
+     * Delete record.
+     *
+     * @param \App\Entity\Tag $tag Tag entity
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function delete(Tag $tag): void
+    {
+        $this->_em->remove($tag);
+        $this->_em->flush($tag);
+    }
     /**
      * Query all records.
      *
