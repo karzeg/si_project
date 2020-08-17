@@ -48,7 +48,7 @@ class Book
     *
     * @ORM\Column(
     *     type="string",
-    *     length=200
+    *     length=255
     *)
     */
     private $description;

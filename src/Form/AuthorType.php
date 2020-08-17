@@ -30,24 +30,33 @@ class AuthorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add(
-            'firstname',
+            'name',
             TextType::class,
             [
-                'label' => 'label_firstname',
+                'label' => 'label_name',
                 'required' => true,
-                'attr' => ['max_length' => 45],
+                'attr' => ['max_length' => 100],
             ]
         );
-
-        $builder->add(
-            'lastname',
-            TextType::class,
-            [
-                'label' => 'label_lastname',
-                'required' => true,
-                'attr' => ['max_length' => 45],
-            ]
-        );
+//        $builder->add(
+//            'firstname',
+//            TextType::class,
+//            [
+//                'label' => 'label_firstname',
+//                'required' => true,
+//                'attr' => ['max_length' => 45],
+//            ]
+//        );
+//
+//        $builder->add(
+//            'lastname',
+//            TextType::class,
+//            [
+//                'label' => 'label_lastname',
+//                'required' => true,
+//                'attr' => ['max_length' => 45],
+//            ]
+//        );
     }
 
     /**

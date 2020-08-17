@@ -50,7 +50,7 @@ class AuthorRepository extends ServiceEntityRepository
     {
         return $this->getOrCreateQueryBuilder()
             ->select('author')
-            ->orderBy('author.lastname', 'ASC');
+            ->orderBy('author.name', 'ASC');
     }
 
     /**
@@ -68,18 +68,6 @@ class AuthorRepository extends ServiceEntityRepository
     }
 
     /**
-     * Get or create new query builder.
-     *
-     * @param \Doctrine\ORM\QueryBuilder|null $queryBuilder Query builder
-     *
-     * @return \Doctrine\ORM\QueryBuilder Query builder
-     */
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('author');
-    }
-
-    /**
      * Delete record.
      *
      * @param \App\Entity\Author $author Author entity
@@ -91,5 +79,16 @@ class AuthorRepository extends ServiceEntityRepository
     {
         $this->_em->remove($author);
         $this->_em->flush($author);
+    }
+    /**
+     * Get or create new query builder.
+     *
+     * @param \Doctrine\ORM\QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return \Doctrine\ORM\QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('author');
     }
 }

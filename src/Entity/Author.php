@@ -31,28 +31,40 @@ class Author
     private $id;
 
     /**
-     * Firstname
+     * Name
      *
      * @var string
      *
      * @ORM\Column(
      *     type="string",
-     *     length=45
+     *     length=100
      *)
      */
-    private $firstname;
+    private $name;
 
-    /**
-     * Lastname
-     *
-     * @var string
-     *
-     * @ORM\Column(
-     *     type="string",
-     *     length=45
-     *)
-     */
-    private $lastname;
+//    /**
+//     * Firstname
+//     *
+//     * @var string
+//     *
+//     * @ORM\Column(
+//     *     type="string",
+//     *     length=45
+//     *)
+//     */
+//    private $firstname;
+
+//    /**
+//     * Lastname
+//     *
+//     * @var string
+//     *
+//     * @ORM\Column(
+//     *     type="string",
+//     *     length=45
+//     *)
+//     */
+//    private $lastname;
 
     /**
      * @ORM\OneToMany(targetEntity=Book::class, mappedBy="author")
@@ -78,44 +90,64 @@ class Author
     }
 
     /**
-     * Getter for Firstname.
+     * Getter for Name.
      *
-     * @return string|null Firstname
+     * @return string|null Name
      */
-    public function getFirstname(): ?string
+    public function getName(): ?string
     {
-        return $this->firstname;
+        return $this->name;
     }
 
     /**
-     * Setter for Firstname.
+     * Setter for Name.
      *
-     * @param string $firstname
+     * @param string $name
      */
-    public function setFirstname(string $firstname): void
+    public function setName(string $name): void
     {
-        $this->firstname = $firstname;
+        $this->name = $name;
     }
 
-    /**
-     * Getter for Lastname.
-     *
-     * @return string|null $lastname
-     */
-    public function getLastname(): ?string
-    {
-        return $this->lastname;
-    }
-
-    /**
-     * Setter for Lastname.
-     *
-     * @param string $lastname
-     */
-    public function setLastname(string $lastname): void
-    {
-        $this->lastname = $lastname;
-    }
+//    /**
+//     * Getter for Firstname.
+//     *
+//     * @return string|null Firstname
+//     */
+//    public function getFirstname(): ?string
+//    {
+//        return $this->firstname;
+//    }
+//
+//    /**
+//     * Setter for Firstname.
+//     *
+//     * @param string $firstname
+//     */
+//    public function setFirstname(string $firstname): void
+//    {
+//        $this->firstname = $firstname;
+//    }
+//
+//    /**
+//     * Getter for Lastname.
+//     *
+//     * @return string|null $lastname
+//     */
+//    public function getLastname(): ?string
+//    {
+//        return $this->lastname;
+//    }
+//
+//    /**
+//     * Setter for Lastname.
+//     *
+//     * @param string $lastname
+//     */
+//    public function setLastname(string $lastname): void
+//    {
+//        $this->lastname = $lastname;
+//    }
 
     /**
      * Getter for books.

@@ -18,8 +18,9 @@
             <tr>
 {#                <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'book.id') }}</th>#}
                 <th>{{ knp_pagination_sortable(pagination, 'label_title'|trans, 'book.title') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label_firstname'|trans, 'book.firstname') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label_lastname'|trans, 'book.lastname') }}</th>
+{#                <th>{{ knp_pagination_sortable(pagination, 'label_firstname'|trans, 'book.firstname') }}</th>#}
+{#                <th>{{ knp_pagination_sortable(pagination, 'label_lastname'|trans, 'book.lastname') }}</th>#}
+                <th>{{ knp_pagination_sortable(pagination, 'label_name'|trans, 'book.name') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label_category'|trans, 'book.category') }}</th>
                 <th>{{ 'label_actions'|trans }}</th>
             </tr>
@@ -29,8 +30,9 @@
                 <tr>
 {#                    <td>{{ book.id }}</td>#}
                     <td>{{ book.title }}</td>
-                    <td>{{ book.author.firstname }}</td>
-                    <td>{{ book.author.lastname }}</td>
+{#                    <td>{{ book.author.firstname }}</td>#}
+{#                    <td>{{ book.author.lastname }}</td>#}
+                    <td>{{ book.author.name }}</td>
                     <td>{{ book.category.content }}</td>
                     <td>
                         <a href="{{ url('book_show', {id: book.id}) }}" title="{{ 'action_view'|trans }}">

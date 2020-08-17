@@ -6,6 +6,7 @@
 namespace App\Form;
 
 use App\Entity\Book;
+use App\Entity\Author;
 use App\Entity\Tag;
 use App\Entity\Category;
 use App\Form\DataTransformer\TagsDataTransformer;
@@ -61,6 +62,20 @@ class BookType extends AbstractType
         );
 
         $builder->add(
+            'author',
+            EntityType::class,
+            [
+                'class' => Author::class,
+                'choice_label' => function ($author) {
+                    return $author->getName();
+                },
+                'label' => 'label_author',
+                'placeholder' => 'label_author',
+                'required' => true,
+            ]
+        );
+
+        $builder->add(
             'description',
             TextType::class,
             [
@@ -79,6 +94,17 @@ class BookType extends AbstractType
                 'choice_label' => 'content'
             )
         );
+
+
+//        $builder->add(
+//            'author',
+//            TextType::class,
+//            [
+//                'label' => 'label_firstname',
+//                'required' => true,
+//                'attr' => ['max_length' => 255],
+//            ]
+//        );
 
 //        $builder->add(
 //            'author',
