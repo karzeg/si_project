@@ -6,45 +6,28 @@
 
 {% block body %}
     <h1>{{ 'category_details'|trans({'%id%': category.id|default('')}) }}</h1>
-
     {% if category is defined and category|length %}
         <dl class="dl-horizontal">
             <dt>{{ 'label_name'|trans }}</dt>
             <dd>{{ category.content }}</dd>
+
+            <dt>{{ 'label_book'|trans }}</dt>
+            <dd>
+                {% for book in category.books %}
+                    <a href="{{ url('book_show', {id: book.id}) }}" title="{{ 'book_show'|trans }}">
+                        {{ book.title }}
+                    </a><br>
+                {%  endfor %}
+            </dd>
+        </dl>
+        <p>
+            <a href="{{ url('author_index') }}" title="{{ 'action_back_to_list'|trans }}" class="btn btn-info">
+                {{ 'action_back_to_list'|trans }}
+            </a>
+        </p>
     {% else %}
         <p>
             {{ 'message_item_not_found'|trans }}
         </p>
     {% endif %}
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>{{ 'label_title'|trans }}</th>
-            <th>{{ 'label_author'|trans }}</th>
-{#            <th>{{ 'label_tags' }}</th>#}
-        </tr>
-        </thead>
-        <tbody>
-        {% for book in category.books %}
-        <tr>
-            <td>{{ book.title }}</td>
-            <td>{{ book.author.name }}</td>
-
-{#            <td>#}
-{#                {%  for tag in book.tags %}#}
-{#                    {{ tag.title }}#}
-{#                {%  endfor %}#}
-
-{#            </td>#}
-            {% endfor %}
-        </tr>
-        <td>
-            <p>
-                <a href="{{ url('category_index') }}" title="{{ 'action_back_to_list'|trans }}">
-                    {{ 'action_back_to_list'|trans }}
-                </a>
-            </p>
-        </td>
-        </tbody>
-    </table>
 {% endblock %}
