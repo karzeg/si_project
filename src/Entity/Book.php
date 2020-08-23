@@ -1,6 +1,6 @@
 <?php
 /**
- * Book entity
+ * Book entity.
  */
 
 namespace App\Entity;
@@ -82,9 +82,9 @@ class Book
      *
      * @var array
      *
-     * @ORM\ManyToMany(targetEntity=Tag::class, mappedBy="book")
+     * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="book")
      *
-     * @ORM\JoinTable(name="tasks_tags")
+     * @ORM\JoinTable(name="books_tags")
      */
     private $tags;
 
@@ -281,16 +281,12 @@ class Book
      *
      * @param Tag $tag
      *
-     * @return $this
      */
-    public function addTag(Tag $tag): self
+    public function addTag(Tag $tag): void
     {
         if (!$this->tags->contains($tag)) {
             $this->tags[] = $tag;
-            $tag->addBook($this);
         }
-
-        return $this;
     }
 
     /**
@@ -298,15 +294,11 @@ class Book
      *
      * @param Tag $tag
      *
-     * @return $this
      */
-    public function removeTag(Tag $tag): self
+    public function removeTag(Tag $tag): void
     {
         if ($this->tags->contains($tag)) {
             $this->tags->removeElement($tag);
-            $tag->removeBook($this);
         }
-
-        return $this;
     }
 }

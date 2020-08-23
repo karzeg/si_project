@@ -8,13 +8,19 @@
     <h1>{{ 'tag_details'|trans({'%id%': tag.id|default('')}) }}</h1>
     {% if tag is defined and tag|length %}
         <dl class="dl-horizontal">
-            <dt>{{ 'label_id'|trans }}</dt>
-            <dd>{{ tag.id }}</dd>
             <dt>{{ 'label_name'|trans }}</dt>
-            <dd>{{ tag.name }}</dd>
+            <dd>{{ tag.title }}</dd>
+            <dt>{{ 'label_book'|trans }}</dt>
+            <dd>
+                {% for book in tag.books %}
+                    <a href="{{ url('book_show', {id: book.id}) }}" title="{{ 'book_show'|trans }}">
+                        {{ book.title }}
+                    </a><br>
+                {%  endfor %}
+            </dd>
         </dl>
         <p>
-            <a href="{{ url('tag_index') }}" title="{{ 'action_back_to_list'|trans }}">
+            <a href="{{ url('tag_index') }}" title="{{ 'action_back_to_list'|trans }}" class="btn btn-info">
                 {{ 'action_back_to_list'|trans }}
             </a>
         </p>

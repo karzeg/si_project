@@ -1,6 +1,6 @@
 <?php
 /**
- * Tag entity
+ * Tag entity.
  */
 
 namespace App\Entity;
@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Repository\TagRepository")
  * @ORM\Table(name="tags")
  *
- * @UniqueEntity(fields={"name"})
+ * @UniqueEntity(fields={"title"})
  */
 class Tag
 {
@@ -34,7 +34,7 @@ class Tag
     private $id;
 
     /**
-     * Name
+     * Title.
      *
      * @var string
      *
@@ -42,16 +42,26 @@ class Tag
      *     type="string",
      *     length=45
      *)
+     * @Assert\Type(type="string")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min="3",
+     *     max="64",
+     * )
      */
-    private $name;
+    private $title;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Book::class, inversedBy="tags")
+     * Books.
+     *
+     * @var \Doctrine\Common\Collections\ArrayCollection|\App\Entity\Book[] Books
+     *
+     * @ORM\ManyToMany(targetEntity=Book::class, mappedBy="tags")
      */
     private $book;
 
     /**
-     * Tag constructor
+     * Tag constructor.
      */
     public function __construct()
     {
@@ -69,56 +79,61 @@ class Tag
     }
 
     /**
-     * Getter for Name
+     * Getter for Title.
      *
-     * @return string|null Name
+     * @return string|null Title
      */
-    public function getName(): ?string
+    public function getTitle(): ?string
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
-     * Setter for Name
+     * Setter for Title.
+     *
+     * @param string $title Title
+     *
      */
-    public function setName(string $name): void
+    public function setTitle(string $title): void
     {
-        $this->name = $name;
+        $this->title = $title;
     }
 
     /**
+     * Getter for books.
+     *
      * @return Collection|Book[]
      */
-    public function getBook(): Collection
+    public function getBooks(): Collection
     {
         return $this->book;
     }
 
     /**
+     * Add book to collection.
+     *
      * @param Book $book
      *
-     * @return $this
      */
-    public function addBook(Book $book): self
+    public function addBook(Book $book): void
     {
         if (!$this->book->contains($book)) {
             $this->book[] = $book;
+            $book->addTag($this);
         }
-
-        return $this;
     }
 
     /**
+     * Remove book from collection.
+     *
      * @param Book $book
      *
-     * @return $this
      */
-    public function removeBook(Book $book): self
+    public function removeBook(Book $book): void
     {
         if ($this->book->contains($book)) {
             $this->book->removeElement($book);
+            $book->removeTag($this);
         }
-
-        return $this;
     }
 }

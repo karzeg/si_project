@@ -8,10 +8,9 @@
     <h1>{{ 'tag_list'|trans }}</h1>
     {% if pagination is defined and pagination.items|length %}
 
-        <table class="table table-striped">
+        <table class="table table-hover">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'tag.id') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label_name'|trans, 'tag.name') }}</th>
                 <th>{{ 'label_actions'|trans }}</th>
             </tr>
@@ -19,8 +18,7 @@
             <tbody>
             {% for tag in pagination.items %}
                 <tr>
-                    <td>{{ tag.id }}</td>
-                    <td>{{ tag.name }}</td>
+                    <td>{{ tag.title }}</td>
                     <td>
                         <a href="{{ url('tag_show', {id: tag.id}) }}" title="{{ 'action_view'|trans }}">
                             <svg class="bi bi-eye" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -52,7 +50,10 @@
 
     {% else %}
         <p>
-            {{ 'message_empty_list'|trans }}
+            {% include 'default/_single_flash_message.html.twig' with {
+                type: 'warning',
+                message: 'message.empty_list'|trans
+            } %}
         </p>
     {% endif %}
 {% endblock %}

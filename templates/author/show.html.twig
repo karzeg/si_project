@@ -8,15 +8,19 @@
     <h1>{{ 'author_details'|trans({'%id%': author.id|default('')}) }}</h1>
     {% if author is defined and author|length %}
         <dl class="dl-horizontal">
-            <dt>{{ 'label_id'|trans }}</dt>
-            <dd>{{ author.id }}</dd>
             <dt>{{ 'label_name'|trans }}</dt>
-            <dd>{{ author.firstname }}</dd>
-            <dt>{{ 'label_lastname'|trans }}</dt>
-            <dd>{{ author.lastname }}</dd>
+            <dd>{{ author.name }}</dd>
+            <dt>{{ 'label_book'|trans }}</dt>
+            <dd>
+                {% for book in author.books %}
+                    <a href="{{ url('book_show', {id: book.id}) }}" title="{{ 'book_show'|trans }}">
+                        {{ book.title }}
+                    </a><br>
+                {%  endfor %}
+            </dd>
         </dl>
         <p>
-            <a href="{{ url('author_index') }}" title="{{ 'action_back_to_list'|trans }}">
+            <a href="{{ url('author_index') }}" title="{{ 'action_back_to_list'|trans }}" class="btn btn-info">
                 {{ 'action_back_to_list'|trans }}
             </a>
         </p>

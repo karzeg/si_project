@@ -8,27 +8,25 @@
     <h1>{{ 'title_book_details'|trans({'%id%': book.id|default('')}) }}</h1>
     {% if book is defined and book|length %}
         <dl class="dl-horizontal">
-{#            <dt>{{ 'label_id'|trans }}</dt>#}
-{#            <dd>{{ book.id }}</dd>#}
             <dt>{{ 'label_title'|trans }}</dt>
             <dd>{{ book.title }}</dd>
-            <dt>{{ 'label_firstname'|trans }}</dt>
-            <dd>{{ book.author.firstname }}</dd>
-            <dt>{{ 'label_lastname'|trans }}</dt>
-            <dd>{{ book.author.lastname }}</dd>
+            <dt>{{ 'label_author_name'|trans }}</dt>
+            <dd>{{ book.author.name }}</dd>
             <dt>{{ 'label_description'|trans }}</dt>
             <dd>{{ book.description }}</dd>
             <dt>{{ 'label_category'|trans }}</dt>
             <dd>{{ book.category.content }}</dd>
             <dt>{{ 'label_tag'|trans }}</dt>
             <dd>
-                {%  for tag in book.tags %}
-                    {{ tag.title }}
-                {%  endfor %}
+                {% for tag in book.tags %}
+                    <a href="{{ url('tag_show', {id: tag.id}) }}" title="{{ 'tag_show'|trans }}">
+                        {{ tag.title }}
+                    </a>,
+                {% endfor %}
             </dd>
         </dl>
         <p>
-            <a href="{{ url('book_index') }}" title="{{ 'action_back_to_list'|trans }}">
+            <a href="{{ url('book_index') }}" title="{{ 'action_back_to_list'|trans }}" class="btn btn-info">
                 {{ 'action_back_to_list'|trans }}
             </a>
         </p>
