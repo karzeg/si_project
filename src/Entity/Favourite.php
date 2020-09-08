@@ -32,12 +32,6 @@ class Favourite
     private $book;
 
     /**
-     * @ORM\ManyToOne(targetEntity=UserData::class, inversedBy="favourites")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $userData;
-
-    /**
     * Getter for Id.
     *
     * @return int|null Result
@@ -67,23 +61,4 @@ class Favourite
         return $this;
     }
 
-    /**
-     * @return UserData|null
-     */
-    public function getUserData(): ?UserData
-    {
-        return $this->userData;
-    }
-
-    /**
-     * @param UserData|null $userData
-     *
-     * @return $this
-     */
-    public function setUserData(?UserData $userData): self
-    {
-        $this->userData = $userData;
-
-        return $this;
-    }
 }

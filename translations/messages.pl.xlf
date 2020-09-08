@@ -138,6 +138,14 @@
                 <source>title_category_delete</source>
                 <target>Usuń kategorię</target>
             </trans-unit>
+            <trans-unit id="label_book">
+                <source>label_book</source>
+                <target>Książka</target>
+            </trans-unit>
+            <trans-unit id="label_book">
+                <source>book_show</source>
+                <target>Pokaż</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

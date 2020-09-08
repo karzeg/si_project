@@ -1,70 +1,109 @@
 <?php
 /**
- * User entity
+ * User entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class User
+ * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\Table(
+ *     name="users",
+ *     uniqueConstraints={
+ *          @ORM\UniqueConstraint(
+ *              name="email_idx",
+ *              columns={"email"},
+ *          )
+ *     }
+ * )
  *
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @ORM\Table(name="users")
+ * @UniqueEntity(fields={"email"})
  */
-class User
+class User implements UserInterface
 {
     /**
-     * Primary key
+     * Role user.
+     *
+     * @var string
+     */
+    const ROLE_USER = 'ROLE_USER';
+
+    /**
+     * Role admin.
+     *
+     * @var string
+     */
+    const ROLE_ADMIN = 'ROLE_ADMIN';
+
+    /**
+     * Primary key.
      *
      * @var int
      *
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(
+     *     name="id",
+     *     type="integer",
+     *     nullable=false,
+     *     options={"unsigned"=true},
+     * )
      */
     private $id;
 
     /**
-     * Login
+     * E-mail.
      *
      * @var string
      *
-     * @ORM\Column(
-     *     type="string",
-     *     length=40
+     * @ORM\Column(type="string",
+     *     length=180,
+     *     unique=true
      *)
+     *
+     * @Assert\NotBlank
+     * @Assert\Email
      */
-    private $login;
+    private $email;
 
     /**
-     * Password
+     * Roles.
+     *
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+    /**
+     * The hashed password.
      *
      * @var string
      *
-     * @ORM\Column(
-     *     type="string",
-     *     length=255
-     *)
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank
+     * @Assert\Type(type="string")
+     *
      */
     private $password;
 
     /**
-     * @ORM\OneToOne(targetEntity=UserData::class, inversedBy="user", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=UserData::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
+     *
+     * @Assert\Type(type="App\Entity\UserData")
      */
     private $userData;
 
     /**
-     * @ORM\Column(type="json")
-     */
-    private $role = [];
-
-    /**
-     * @return int|null
+     * Getter for the Id.
+     *
+     * @return int|null Result
      */
     public function getId(): ?int
     {
@@ -72,35 +111,79 @@ class User
     }
 
     /**
-     * @return string|null
-     */
-    public function getLogin(): ?string
-    {
-        return $this->login;
-    }
-
-    /**
-     * @param string $login
+     * Getter for the E-mail.
      *
-     * @return $this
+     * @return string|null E-mail
      */
-    public function setLogin(string $login): self
+    public function getEmail(): ?string
     {
-        $this->login = $login;
-
-        return $this;
+        return $this->email;
     }
 
     /**
-     * @return string|null
+     * Setter for the E-mail.
+     *
+     * @param string $email E-mail
      */
-    public function getPassword(): ?string
+    public function setEmail(string $email): void
     {
-        return $this->password;
+        $this->email = $email;
     }
 
     /**
-     * @param string $password
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     *
+     * @return string User name
+     */
+    public function getUsername(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * Getter for the Roles.
+     *
+     * @see UserInterface
+     *
+     * @return array Roles
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = static::ROLE_USER;
+
+        return array_unique($roles);
+    }
+
+    /**
+     * Setter for the Roles.
+     *
+     * @param array $roles Roles
+     */
+    public function setRoles(array $roles): void
+    {
+        $this->roles = $roles;
+    }
+
+    /**
+     * Getter for the Password.
+     *
+     * @see UserInterface
+     *
+     * @return string|null Password
+     */
+    public function getPassword(): string
+    {
+        return (string) $this->password;
+    }
+
+    /**
+     * Setter for the Password.
+     *
+     * @param string $password Password
      */
     public function setPassword(string $password): void
     {
@@ -108,6 +191,25 @@ class User
     }
 
     /**
+     * @see UserInterface
+     */
+    public function getSalt()
+    {
+        // not needed when using the "bcrypt" algorithm in security.yaml
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+    /**
+     * Getter for userData.
+     *
      * @return UserData|null
      */
     public function getUserData(): ?UserData
@@ -116,34 +218,12 @@ class User
     }
 
     /**
-     * @param UserData $userData
+     * Setter for userData.
      *
-     * @return $this
+     * @param UserData $userData
      */
-    public function setUserData(UserData $userData): self
+    public function setUserData(UserData $userData): void
     {
         $this->userData = $userData;
-
-        return $this;
-    }
-
-    /**
-     * @return array|null
-     */
-    public function getRole(): ?array
-    {
-        return $this->role;
-    }
-
-    /**
-     * @param array $role
-     *
-     * @return $this
-     */
-    public function setRole(array $role): self
-    {
-        $this->role = $role;
-
-        return $this;
     }
 }

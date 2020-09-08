@@ -1,17 +1,18 @@
 <?php
 /**
- * UserData repository
+ * UserData repository.
  */
 
 namespace App\Repository;
 
+use App\Entity\User;
 use App\Entity\UserData;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * Class UserDataRepository
+ * Class UserDataRepository.
  *
  * @method UserData|null find($id, $lockMode = null, $lockVersion = null)
  * @method UserData|null findOneBy(array $criteria, array $orderBy = null)
@@ -21,18 +22,7 @@ use Doctrine\Persistence\ManagerRegistry;
 class UserDataRepository extends ServiceEntityRepository
 {
     /**
-     * Items per page.
-     *
-     * Use constants to define configuration options that rarely change instead
-     * of specifying them in app/config/config.yml.
-     * See https://symfony.com/doc/current/best_practices.html#configuration
-     *
-     * @constant int
-     */
-    const PAGINATOR_ITEMS_PER_PAGE = 10;
-
-    /**
-     * UserDataRepository constructor
+     * UserDataRepository constructor.
      *
      * @param \Doctrine\Common\Persistence\ManagerRegistry $registry Manager registry
      */
@@ -42,15 +32,17 @@ class UserDataRepository extends ServiceEntityRepository
     }
 
     /**
-     * Query all records.
+     * Save record.
      *
-     * @return \Doctrine\ORM\QueryBuilder Query builder
+     * @param \App\Entity\UserData $userdata UserData entity
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function queryAll(): QueryBuilder
+    public function save(UserData $userdata): void
     {
-        return $this->getOrCreateQueryBuilder()
-            ->select('userdata')
-            ->orderBy('userdata.id', 'ASC');
+        $this->_em->persist($userdata);
+        $this->_em->flush($userdata);
     }
 
     /**
@@ -64,5 +56,75 @@ class UserDataRepository extends ServiceEntityRepository
     {
         return $queryBuilder ?? $this->createQueryBuilder('userdata');
     }
-}
 
+    /**
+     * Query all records.
+     *
+     * @return \Doctrine\ORM\QueryBuilder Query builder
+     */
+    public function queryAll(): QueryBuilder
+    {
+        return $this->getOrCreateQueryBuilder()
+            ->select('userdata', 'user')
+            ->innerJoin('userdata.user', 'user');
+    }
+
+    /**
+     * Query userdata by user.
+     *
+     * @param \App\Entity\User $user User entity
+     *
+     * @return \Doctrine\ORM\QueryBuilder Query builder
+     */
+    public function queryByUser(User $user): QueryBuilder
+    {
+        $queryBuilder = $this->queryAll();
+        $queryBuilder->andWhere('userdata.user = :user')
+            ->setParameter('user', $user);
+
+        return $queryBuilder;
+    }
+
+    /**
+     * Delete userData.
+     *
+     * @param \App\Entity\UserData $userdata UserData entity
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function delete(UserData $userdata): void
+    {
+        $this->_em->remove($userdata);
+        $this->_em->flush($userdata);
+    }
+
+    // /**
+    //  * @return UserData[] Returns an array of UserData objects
+    //  */
+    /*
+    public function findByExampleField($value)
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('u.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    */
+
+    /*
+    public function findOneBySomeField($value): ?UserData
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+    */
+}

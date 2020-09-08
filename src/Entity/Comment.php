@@ -41,12 +41,6 @@ class Comment
     private $book;
 
     /**
-     * @ORM\ManyToOne(targetEntity=UserData::class, inversedBy="comments")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $userData;
-
-    /**
      * Getter for id
      *
      * @return int|null Result
@@ -92,26 +86,6 @@ class Comment
     public function setBook(?Book $book): self
     {
         $this->book = $book;
-
-        return $this;
-    }
-
-    /**
-     * @return UserData|null
-     */
-    public function getUserData(): ?UserData
-    {
-        return $this->userData;
-    }
-
-    /**
-     * @param UserData|null $userData
-     *
-     * @return $this
-     */
-    public function setUserData(?UserData $userData): self
-    {
-        $this->userData = $userData;
 
         return $this;
     }

@@ -92,5 +92,4 @@ class BookRepository extends ServiceEntityRepository
     {
         return $queryBuilder ?? $this->createQueryBuilder('book');
     }
-
 }

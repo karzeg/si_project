@@ -138,6 +138,14 @@
                 <source>title_category_delete</source>
                 <target>Delete category</target>
             </trans-unit>
+            <trans-unit id="label_book">
+                <source>label_book</source>
+                <target>Book</target>
+            </trans-unit>
+            <trans-unit id="label_book">
+                <source>book_show</source>
+                <target>Show book</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
