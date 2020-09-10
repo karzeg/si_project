@@ -9,6 +9,8 @@ use App\Entity\Author;
 use App\Form\AuthorType;
 use App\Repository\AuthorRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -87,6 +89,10 @@ class AuthorController extends AbstractController
      *     methods={"GET", "POST"},
      *     name="author_create",
      * )
+     *
+     * @Security(
+     *     "is_granted('ROLE_ADMIN')"
+     * )
      */
     public function create(Request $request, AuthorRepository $authorRepository): Response
     {
@@ -122,6 +128,10 @@ class AuthorController extends AbstractController
      *     methods={"GET", "PUT"},
      *     requirements={"id": "[1-9]\d*"},
      *     name="author_edit",
+     * )
+     *
+     * @Security(
+     *     "is_granted('ROLE_ADMIN')"
      * )
      */
     public function edit(Request $request, Author $author, AuthorRepository $authorRepository): Response
@@ -163,6 +173,10 @@ class AuthorController extends AbstractController
      *     methods={"GET", "DELETE"},
      *     requirements={"id": "[1-9]\d*"},
      *     name="author_delete",
+     * )
+     *
+     * @Security(
+     *     "is_granted('ROLE_ADMIN')"
      * )
      */
     public function delete(Request $request, Author $author, AuthorRepository $authorRepository): Response

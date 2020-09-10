@@ -9,6 +9,8 @@ use App\Entity\Tag;
 use App\Form\TagType;
 use App\Repository\TagRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -87,6 +89,10 @@ class TagController extends AbstractController
      *     methods={"GET", "POST"},
      *     name="tag_create",
      * )
+     *
+     * @Security(
+     *     "is_granted('ROLE_ADMIN')"
+     * )
      */
     public function create(Request $request, TagRepository $tagRepository): Response
     {
@@ -124,6 +130,10 @@ class TagController extends AbstractController
      *     methods={"GET", "PUT"},
      *     requirements={"id": "[1-9]\d*"},
      *     name="tag_edit",
+     * )
+     *
+     * @Security(
+     *     "is_granted('ROLE_ADMIN')"
      * )
      */
     public function edit(Request $request, Tag $tag, TagRepository $tagRepository): Response
@@ -164,6 +174,10 @@ class TagController extends AbstractController
      *     methods={"GET", "DELETE"},
      *     requirements={"id": "[1-9]\d*"},
      *     name="tag_delete",
+     * )
+     *
+     * @Security(
+     *     "is_granted('ROLE_ADMIN')"
      * )
      */
     public function delete(Request $request, Tag $tag, TagRepository $tagRepository): Response

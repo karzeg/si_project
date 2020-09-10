@@ -9,6 +9,7 @@ use App\Repository\BookRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Book
@@ -73,7 +74,19 @@ class Book
     private $favourites;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="book")
+     * Comments.
+     *
+     * @var array
+     *
+     * @ORM\OneToMany(
+     *     targetEntity=Comment::class,
+     *     mappedBy="book",
+     *     orphanRemoval=true
+     * )
+     *
+     * @Assert\All({
+     * @Assert\Type(type="App\Entity\Comment")
+     * })
      */
     private $comments;
 
@@ -226,6 +239,8 @@ class Book
     }
 
     /**
+     * Getter for comments.
+     *
      * @return Collection|Comment[]
      */
     public function getComments(): Collection
@@ -234,6 +249,8 @@ class Book
     }
 
     /**
+     * Add comment.
+     *
      * @param Comment $comment
      *
      * @return $this
@@ -249,6 +266,8 @@ class Book
     }
 
     /**
+     * Remove comment.
+     *
      * @param Comment $comment
      *
      * @return $this

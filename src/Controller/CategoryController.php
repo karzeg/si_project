@@ -9,6 +9,8 @@ use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -87,6 +89,10 @@ class CategoryController extends AbstractController
      *     methods={"GET", "POST"},
      *     name="category_create",
      * )
+     *
+     * @Security(
+     *     "is_granted('ROLE_ADMIN')"
+     * )
      */
     public function create(Request $request, CategoryRepository $categoryRepository): Response
     {
@@ -125,6 +131,10 @@ class CategoryController extends AbstractController
      *     methods={"GET", "PUT"},
      *     requirements={"id": "[1-9]\d*"},
      *     name="category_edit",
+     * )
+     *
+     * @Security(
+     *     "is_granted('ROLE_ADMIN')"
      * )
      */
     public function edit(Request $request, Category $category, CategoryRepository $categoryRepository): Response
@@ -166,6 +176,10 @@ class CategoryController extends AbstractController
      *     methods={"GET", "DELETE"},
      *     requirements={"id": "[1-9]\d*"},
      *     name="category_delete",
+     * )
+     *
+     * @Security(
+     *     "is_granted('ROLE_ADMIN')"
      * )
      */
     public function delete(Request $request, Category $category, CategoryRepository $categoryRepository): Response

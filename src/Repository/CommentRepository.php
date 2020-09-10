@@ -1,17 +1,16 @@
 <?php
 /**
- * Comment repository
+ * Comment repository.
  */
 
 namespace App\Repository;
 
 use App\Entity\Comment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * Class CommentRepository
+ * Class CommentRepository.
  *
  * @method Comment|null find($id, $lockMode = null, $lockVersion = null)
  * @method Comment|null findOneBy(array $criteria, array $orderBy = null)
@@ -21,47 +20,40 @@ use Doctrine\Persistence\ManagerRegistry;
 class CommentRepository extends ServiceEntityRepository
 {
     /**
-     * Items per page.
-     *
-     * Use constants to define configuration options that rarely change instead
-     * of specifying them in app/config/config.yml.
-     * See https://symfony.com/doc/current/best_practices.html#configuration
-     *
-     * @constant int
-     */
-    const PAGINATOR_ITEMS_PER_PAGE = 10;
-
-    /**
-     * CommentRepository constructor
+     * CommentRepository constructor.
      *
      * @param \Doctrine\Common\Persistence\ManagerRegistry $registry Manager registry
      */
-    public function __construct(\Doctrine\Common\Persistence\ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Comment::class);
     }
 
     /**
-     * Query all records.
+     * Save record.
      *
-     * @return \Doctrine\ORM\QueryBuilder Query builder
+     * @param \App\Entity\Comment $comment Comment entity
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function queryAll(): QueryBuilder
+    public function save(Comment $comment): void
     {
-        return $this->getOrCreateQueryBuilder()
-            ->select('comment')
-            ->orderBy('comment.id', 'ASC');
+        $this->_em->persist($comment);
+        $this->_em->flush($comment);
     }
 
     /**
-     * Get or create new query builder.
+     * Delete record.
      *
-     * @param \Doctrine\ORM\QueryBuilder|null $queryBuilder Query builder
+     * @param \App\Entity\Comment $comment Comment entity
      *
-     * @return \Doctrine\ORM\QueryBuilder Query builder
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    public function delete(Comment $comment): void
     {
-        return $queryBuilder ?? $this->createQueryBuilder('comment');
+        $this->_em->remove($comment);
+        $this->_em->flush($comment);
     }
 }

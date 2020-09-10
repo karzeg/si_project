@@ -91,6 +91,7 @@ class BookType extends AbstractType
             array(
                 'label' => 'label_category',
                 'class' => "App\Entity\Category",
+                'placeholder' => 'label_category',
                 'choice_label' => 'content'
             )
         );

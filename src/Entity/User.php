@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(
  *     name="users",
  *     uniqueConstraints={
@@ -86,11 +86,14 @@ class User implements UserInterface
      *
      * @ORM\Column(type="string")
      *
-     * @Assert\NotBlank
-     * @Assert\Type(type="string")
-     *
+     * @Assert\Type("string")
+     * @Assert\Length(
+     *     min="6",
+     *     max="180",
+     * )
      */
     private $password;
+
 
     /**
      * @ORM\OneToOne(targetEntity=UserData::class, cascade={"persist", "remove"})

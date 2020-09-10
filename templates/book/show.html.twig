@@ -25,6 +25,49 @@
                 {% endfor %}
             </dd>
         </dl>
+
+        <br>
+
+        <h2>{{ 'label_comments'|trans }}</h2>
+        <br>
+
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    {%  for comment in book.comments %}
+                    <td>
+                        {{ comment.content }}
+                    </td>
+                    <td>
+                    {% if is_granted ('ROLE_ADMIN') %}
+                        <a href="{{ url('comment_delete', {'id': comment.id})}}" title="{{ 'action_delete'|trans }}" class="btn btn-info">
+                            {{ 'action_delete'|trans }}
+                        </a>
+                    {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div>
+            <br>
+            <h5>{{ 'add_comment'|trans }}</h5>
+
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <p>
+                    <a href="{{ url('comment_create', {'id': book.id}) }}" title="{{ 'action_create'|trans }}" class="btn btn-info">
+                        {{ 'action_create'|trans }}
+                    </a>
+                </p>
+            {% else %}
+                <p>
+                    {{ 'message_log_in'|trans }}
+                <div>
+                    <a href="{{ url('app_login') }}" class="btn btn-info" id="login_btn"> {{ 'action_login'|trans }}</a>
+                </div>
+                </p>
+            {% endif %}
+        </div>
         <p>
             <a href="{{ url('book_index') }}" title="{{ 'action_back_to_list'|trans }}" class="btn btn-info">
                 {{ 'action_back_to_list'|trans }}

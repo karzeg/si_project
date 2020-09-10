@@ -13,9 +13,9 @@
             <dt>{{ 'label_email'|trans }}</dt>
             <dd>{{ user.email }}</dd>
             <dt>{{ 'label_firstname'|trans }}</dt>
-            <dd>{{ user.user_data.firstname }}</dd>
+            <dd>{{ user.userdata.firstname }}</dd>
             <dt>{{ 'label_lastname'|trans }}</dt>
-            <dd>{{ user.user_data.lastname }}</dd>
+            <dd>{{ user.userdata.lastname }}</dd>
         </dl>
         <p>
             <a href="{{ url('user-data_edit', {id: user.userdata.id}) }}" title="{{ 'user_edit'|trans }}" class="btn btn-info">
@@ -28,7 +28,7 @@
             </a>
         </p>
         <p>
-            <a href="{{ url('task_index') }}" title="{{ 'action_back_to_list'|trans }}" class="btn btn-info">
+            <a href="{{ url('user_index') }}" title="{{ 'action_back_to_list'|trans }}" class="btn btn-info">
                 {{ 'action_back_to_list'|trans }}
             </a>
         </p>

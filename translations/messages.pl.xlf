@@ -50,13 +50,57 @@
                 <source>label_tags</source>
                 <target>Tagi</target>
             </trans-unit>
+            <trans-unit id="label_password">
+                <source>label_password</source>
+                <target>Hasło</target>
+            </trans-unit>
+            <trans-unit id="label_agree_terms">
+                <source>label_agree_terms</source>
+                <target>Akceptuję warunki</target>
+            </trans-unit>
             <trans-unit id="message_empty_list">
                 <source>message_empty_list</source>
                 <target>Pusta lista</target>
             </trans-unit>
             <trans-unit id="message_item_not_found">
                 <source>message_item_not_found</source>
-                <target>Nieznaleziono elementu.</target>
+                <target>Nieznaleziono elementu</target>
+            </trans-unit>
+            <trans-unit id="message_form_error">
+                <source>message_form_error</source>
+                <target>Błąd formularza</target>
+            </trans-unit>
+            <trans-unit id="message.empty_list">
+                <source>message.empty_list</source>
+                <target>Pusta lista</target>
+            </trans-unit>
+            <trans-unit id="message.deleted_successfully">
+                <source>message.deleted_successfully</source>
+                <target>Usunięto</target>
+            </trans-unit>
+            <trans-unit id="message_deleted_successfully">
+                <source>message_deleted_successfully</source>
+                <target>Usunięto</target>
+            </trans-unit>
+            <trans-unit id="message_updated_successfully">
+                <source>message_updated_successfully</source>
+                <target>Zapisano</target>
+            </trans-unit>
+            <trans-unit id="message_category_contains_tasks">
+                <source>message_category_contains_tasks</source>
+                <target>Kategoria zawiera elementy</target>
+            </trans-unit>
+            <trans-unit id="message_password_changed_successfully">
+                <source>message_password_changed_successfully</source>
+                <target>Hasło zmieniono pomyślnie</target>
+            </trans-unit>
+            <trans-unit id="message_log_in">
+                <source>message_log_in</source>
+                <target>Zaloguj się, aby dodać komentarz</target>
+            </trans-unit>
+            <trans-unit id="message_registered_successfully">
+                <source>message_registered_successfully</source>
+                <target>Zarejestrowano</target>
             </trans-unit>
             <trans-unit id="title_book_details">
                 <source>title_book_details</source>
@@ -69,6 +113,26 @@
             <trans-unit id="title_record_list">
                 <source>title_record_list</source>
                 <target>Lista rekordów</target>
+            </trans-unit>
+            <trans-unit id="title_tag_list">
+                <source>title_tag_list</source>
+                <target>Tagi</target>
+            </trans-unit>
+            <trans-unit id="title_user_list">
+                <source>title_user_list</source>
+                <target>Użytkownicy</target>
+            </trans-unit>
+            <trans-unit id="title_user_details">
+                <source>title_user_details</source>
+                <target>Szczegóły</target>
+            </trans-unit>
+            <trans-unit id="title_user_edit">
+                <source>title_user_edit</source>
+                <target>Edytuj dane</target>
+            </trans-unit>
+            <trans-unit id="user_edit">
+                <source>user_edit</source>
+                <target>Edytuj użytkownika</target>
             </trans-unit>
             <trans-unit id="author_create">
                 <source>author_create</source>
@@ -88,7 +152,15 @@
             </trans-unit>
             <trans-unit id="author_details">
                 <source>author_details</source>
-                <target>Więcej</target>
+                <target>Szczegóły</target>
+            </trans-unit>
+            <trans-unit id="label_author_name">
+                <source>label_author_name</source>
+                <target>Autor</target>
+            </trans-unit>
+            <trans-unit id="label_author">
+                <source>label_author</source>
+                <target>Autor</target>
             </trans-unit>
             <trans-unit id="label_firstname">
                 <source>label_firstname</source>
@@ -105,6 +177,10 @@
             <trans-unit id="book_create">
                 <source>book_create</source>
                 <target>Dodaj książkę</target>
+            </trans-unit>
+            <trans-unit id="label_comments">
+                <source>label_comments</source>
+                <target>Komentarze</target>
             </trans-unit>
             <trans-unit id="book_edit">
                 <source>book_edit</source>
@@ -124,7 +200,7 @@
             </trans-unit>
             <trans-unit id="category_details">
                 <source>category_details</source>
-                <target>Więcej</target>
+                <target>Szczegóły</target>
             </trans-unit>
             <trans-unit id="title_category_create">
                 <source>title_category_create</source>
@@ -142,9 +218,101 @@
                 <source>label_book</source>
                 <target>Książka</target>
             </trans-unit>
-            <trans-unit id="label_book">
+            <trans-unit id="book_show">
                 <source>book_show</source>
-                <target>Pokaż</target>
+                <target>Pokaż książkę</target>
+            </trans-unit>
+            <trans-unit id="action_logout">
+                <source>action_logout</source>
+                <target>Wyloguj</target>
+            </trans-unit>
+            <trans-unit id="action_login">
+                <source>action_login</source>
+                <target>Logowanie</target>
+            </trans-unit>
+            <trans-unit id="action_register">
+                <source>action_register</source>
+                <target>Rejestracja</target>
+            </trans-unit>
+            <trans-unit id="register">
+                <source>register</source>
+                <target>Rejestracja</target>
+            </trans-unit>
+            <trans-unit id="sign_in">
+                <source>sign_in</source>
+                <target>Dołącz</target>
+            </trans-unit>
+            <trans-unit id="please_sign_in">
+                <source>please_sign_in</source>
+                <target>Logowanie</target>
+            </trans-unit>
+            <trans-unit id="password">
+                <source>password</source>
+                <target>Hasło</target>
+            </trans-unit>
+            <trans-unit id="change_password">
+                <source>change_password</source>
+                <target>Zmień hasło</target>
+            </trans-unit>
+            <trans-unit id="title_tag_lis">
+                <source>title_tag_lis</source>
+                <target>Tagi</target>
+            </trans-unit>
+            <trans-unit id="label_tag">
+                <source>label_tag</source>
+                <target>Tagi</target>
+            </trans-unit>
+            <trans-unit id="tag_show">
+                <source>tag_show</source>
+                <target>Pokaż tagi</target>
+            </trans-unit>
+            <trans-unit id="tag_create">
+                <source>tag_create</source>
+                <target>Utwórz tag</target>
+            </trans-unit>
+            <trans-unit id="tag_delete">
+                <source>tag_delete</source>
+                <target>Usuń tag</target>
+            </trans-unit>
+            <trans-unit id="tag_edit">
+                <source>tag_edit</source>
+                <target>Edytuj tag</target>
+            </trans-unit>
+            <trans-unit id="tag_details">
+                <source>tag_details</source>
+                <target>Szczegóły</target>
+            </trans-unit>
+            <trans-unit id="join_in">
+                <source>join_in</source>
+                <target>Dołącz</target>
+            </trans-unit>
+            <trans-unit id="log_in">
+                <source>log_in</source>
+                <target>Zaloguj</target>
+            </trans-unit>
+            <trans-unit id="label_roles">
+                <source>label_roles</source>
+                <target>Role</target>
+            </trans-unit>
+            <trans-unit id="label_email">
+                <source>label_email</source>
+                <target>E-mail</target>
+            </trans-unit>
+            <trans-unit id="title_change_password">
+                <source>title_change_password</source>
+                <target>Zmiana hasła</target>
+            </trans-unit>
+            <trans-unit id="new_password">
+                <source>new_password</source>
+                <target>Nowe hasło</target>
+            </trans-unit>
+            <trans-unit id="tag_list">
+                <source>tag_list</source>
+                <target>Tagi</target>
+            </trans-unit>
+            <trans-unit id="add_comment">
+                <source>add_comment</source>
+                <target>Dodaj komentarz</target>
             </trans-unit>
         </body>
     </file>

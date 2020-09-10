@@ -8,7 +8,9 @@ namespace App\Controller;
 use App\Entity\Book;
 use App\Form\BookType;
 use App\Repository\BookRepository;
+use App\Security\Voter\BookVoter;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -64,8 +66,6 @@ class BookController extends AbstractController
      *     name="book_show",
      *     requirements={"id": "[1-9]\d*"},
      * )
-     * @Security(
-     *     "is_granted('ROLE_ADMIN') or is_granted('VIEW', book)"
      */
     public function show(Book $book): Response
     {
@@ -90,6 +90,9 @@ class BookController extends AbstractController
      *     "/create",
      *     methods={"GET", "POST"},
      *     name="book_create",
+     * )
+     * @Security(
+     *     "is_granted('ROLE_ADMIN')"
      * )
      */
     public function create(Request $request, BookRepository $bookRepository): Response
@@ -128,8 +131,11 @@ class BookController extends AbstractController
      *     requirements={"id": "[1-9]\d*"},
      *     name="book_edit",
      * )
-     * @Security(
-     *     "is_granted('ROLE_ADMIN') or is_granted('EDIT', book)"
+     *
+     * @IsGranted(
+     *     "EDIT",
+     *     subject="book",
+     * )
      */
     public function edit(Request $request, Book $book, BookRepository $bookRepository): Response
     {
@@ -171,8 +177,10 @@ class BookController extends AbstractController
      *     requirements={"id": "[1-9]\d*"},
      *     name="book_delete",
      * )
-     * @Security(
-     *     "is_granted('ROLE_ADMIN') or is_granted('DELETE', book)"
+     *
+     * @IsGranted(
+     *     "DELETE",
+     *     subject="book",
      * )
      */
     public function delete(Request $request, Book $book, BookRepository $bookRepository): Response

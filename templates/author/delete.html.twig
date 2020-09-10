@@ -9,10 +9,10 @@
     {{ form_start(form, { method: 'DELETE', action: url('author_delete', {id: author.id}) }) }}
     {{ form_widget(form) }}
     <div class="form-group row float-sm-right">
-        <input type="submit" value="{{ 'action_save'|trans }}" class="btn btn-primary" />
+        <input type="submit" value="{{ 'action_delete'|trans }}" class="btn btn-info" />
     </div>
     <div class="form-group row float-sm-left">
-        <a href="{{ url('author_index') }}" class="btn btn-link">
+        <a href="{{ url('author_index') }}" class="btn btn-info">
             {{ 'action_back_to_list'|trans }}
         </a>
     </div>

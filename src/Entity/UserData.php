@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass=UserDataRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\UserDataRepository")
  * @ORM\Table(name="users_data")
  */
 class UserData
@@ -54,6 +54,11 @@ class UserData
      * )
      */
     private $lastname;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $comment;
 
     /**
      * Getter for Id.
@@ -103,5 +108,17 @@ class UserData
     public function setLastname(string $lastname): void
     {
         $this->lastname = $lastname;
+    }
+
+    public function getComment(): ?string
+    {
+        return $this->comment;
+    }
+
+    public function setComment(?string $comment): self
+    {
+        $this->comment = $comment;
+
+        return $this;
     }
 }

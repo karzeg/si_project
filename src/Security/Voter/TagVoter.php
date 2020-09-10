@@ -1,20 +1,20 @@
 <?php
 /**
- * Book security voter.
+ * Tag security voter.
  */
 
 namespace App\Security\Voter;
 
-use App\Entity\Book;
+use App\Entity\Tag;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class BookVoter.
+ * Class TagVoter.
  */
-class BookVoter extends Voter
+class TagVoter extends Voter
 {
     /**
      * Security helper.
@@ -44,7 +44,7 @@ class BookVoter extends Voter
     protected function supports($attribute, $subject)
     {
         return in_array($attribute, ['VIEW', 'EDIT', 'DELETE'])
-            && $subject instanceof Book;
+            && $subject instanceof Tag;
     }
 
     /**

@@ -8,7 +8,7 @@
     <h1>{{ 'author_details'|trans({'%id%': author.id|default('')}) }}</h1>
     {% if author is defined and author|length %}
         <dl class="dl-horizontal">
-            <dt>{{ 'label_name'|trans }}</dt>
+            <dt>{{ 'label_author'|trans }}</dt>
             <dd>{{ author.name }}</dd>
             <dt>{{ 'label_book'|trans }}</dt>
             <dd>

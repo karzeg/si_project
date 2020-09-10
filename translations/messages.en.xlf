@@ -50,6 +50,14 @@
                 <source>label_tags</source>
                 <target>Tags</target>
             </trans-unit>
+            <trans-unit id="label_password">
+                <source>label_password</source>
+                <target>Password</target>
+            </trans-unit>
+            <trans-unit id="label_agree_terms">
+                <source>label_agree_terms</source>
+                <target>Agree terms.</target>
+            </trans-unit>
             <trans-unit id="message_empty_list">
                 <source>message_empty_list</source>
                 <target>Empty list</target>
@@ -58,9 +66,45 @@
                 <source>message_item_not_found</source>
                 <target>Item not found.</target>
             </trans-unit>
+            <trans-unit id="message_form_error">
+                <source>message_form_error</source>
+                <target>Form error.</target>
+            </trans-unit>
+            <trans-unit id="message.empty_list">
+                <source>message.empty_list</source>
+                <target>Empty list.</target>
+            </trans-unit>
+            <trans-unit id="message.deleted_successfully">
+                <source>message.deleted_successfully</source>
+                <target>Deleted</target>
+            </trans-unit>
+            <trans-unit id="message_deleted_successfully">
+                <source>message_deleted_successfully</source>
+                <target>Deleted</target>
+            </trans-unit>
+            <trans-unit id="message_updated_successfully">
+                <source>message_updated_successfully</source>
+                <target>Updated</target>
+            </trans-unit>
+            <trans-unit id="message_category_contains_tasks">
+                <source>message_category_contains_tasks</source>
+                <target>Category contains elements</target>
+            </trans-unit>
+            <trans-unit id="message_password_changed_successfully">
+                <source>message_password_changed_successfully</source>
+                <target>Password changed successfully</target>
+            </trans-unit>
+            <trans-unit id="message_log_in">
+                <source>message_log_in</source>
+                <target>Only logged users.</target>
+            </trans-unit>
+            <trans-unit id="message_registered_successfully">
+                <source>message_registered_successfully</source>
+                <target>Registered</target>
+            </trans-unit>
             <trans-unit id="title_book_details">
                 <source>title_book_details</source>
-                <target>Details</target>
+                <target>More details</target>
             </trans-unit>
             <trans-unit id="title_book_list">
                 <source>title_book_list</source>
@@ -69,6 +113,26 @@
             <trans-unit id="title_record_list">
                 <source>title_record_list</source>
                 <target>Records list</target>
+            </trans-unit>
+            <trans-unit id="title_tag_list">
+                <source>title_tag_list</source>
+                <target>Tags list</target>
+            </trans-unit>
+            <trans-unit id="title_user_list">
+                <source>title_user_list</source>
+                <target>Users list</target>
+            </trans-unit>
+            <trans-unit id="title_user_details">
+                <source>title_user_details</source>
+                <target>More details</target>
+            </trans-unit>
+            <trans-unit id="title_user_edit">
+                <source>title_user_edit</source>
+                <target>User edit</target>
+            </trans-unit>
+            <trans-unit id="user_edit">
+                <source>user_edit</source>
+                <target>User edit</target>
             </trans-unit>
             <trans-unit id="author_create">
                 <source>author_create</source>
@@ -90,6 +154,14 @@
                 <source>author_details</source>
                 <target>More details</target>
             </trans-unit>
+            <trans-unit id="label_author_name">
+                <source>label_author_name</source>
+                <target>Author</target>
+            </trans-unit>
+            <trans-unit id="label_author">
+                <source>label_author</source>
+                <target>Author</target>
+            </trans-unit>
             <trans-unit id="label_firstname">
                 <source>label_firstname</source>
                 <target>Firstname</target>
@@ -101,6 +173,10 @@
             <trans-unit id="label_name">
                 <source>label_name</source>
                 <target>Name</target>
+            </trans-unit>
+            <trans-unit id="label_comments">
+                <source>label_comments</source>
+                <target>Comments</target>
             </trans-unit>
             <trans-unit id="book_create">
                 <source>book_create</source>
@@ -124,7 +200,7 @@
             </trans-unit>
             <trans-unit id="category_details">
                 <source>category_details</source>
-                <target>More</target>
+                <target>More details</target>
             </trans-unit>
             <trans-unit id="title_category_create">
                 <source>title_category_create</source>
@@ -142,9 +218,101 @@
                 <source>label_book</source>
                 <target>Book</target>
             </trans-unit>
-            <trans-unit id="label_book">
+            <trans-unit id="book_show">
                 <source>book_show</source>
                 <target>Show book</target>
+            </trans-unit>
+            <trans-unit id="action_logout">
+                <source>action_logout</source>
+                <target>Logout</target>
+            </trans-unit>
+            <trans-unit id="action_login">
+                <source>action_login</source>
+                <target>Login</target>
+            </trans-unit>
+            <trans-unit id="action_register">
+                <source>action_register</source>
+                <target>Register</target>
+            </trans-unit>
+            <trans-unit id="register">
+                <source>register</source>
+                <target>Register</target>
+            </trans-unit>
+            <trans-unit id="sign_in">
+                <source>sign_in</source>
+                <target>Sign in</target>
+            </trans-unit>
+            <trans-unit id="please_sign_in">
+                <source>please_sign_in</source>
+                <target>Login</target>
+            </trans-unit>
+            <trans-unit id="password">
+                <source>password</source>
+                <target>Password</target>
+            </trans-unit>
+            <trans-unit id="change_password">
+                <source>change_password</source>
+                <target>Change password</target>
+            </trans-unit>
+            <trans-unit id="title_tag_lis">
+                <source>title_tag_lis</source>
+                <target>Tags</target>
+            </trans-unit>
+            <trans-unit id="label_tag">
+                <source>label_tag</source>
+                <target>Tags</target>
+            </trans-unit>
+            <trans-unit id="tag_show">
+                <source>tag_show</source>
+                <target>Show tag</target>
+            </trans-unit>
+            <trans-unit id="tag_create">
+                <source>tag_create</source>
+                <target>Create tag</target>
+            </trans-unit>
+            <trans-unit id="tag_delete">
+                <source>tag_delete</source>
+                <target>Delete tag</target>
+            </trans-unit>
+            <trans-unit id="tag_edit">
+                <source>tag_edit</source>
+                <target>Edit tag</target>
+            </trans-unit>
+            <trans-unit id="tag_details">
+                <source>tag_details</source>
+                <target>More details</target>
+            </trans-unit>
+            <trans-unit id="join_in">
+                <source>join_in</source>
+                <target>Join in</target>
+            </trans-unit>
+            <trans-unit id="log_in">
+                <source>log_in</source>
+                <target>Log in</target>
+            </trans-unit>
+            <trans-unit id="label_roles">
+                <source>label_roles</source>
+                <target>Roles</target>
+            </trans-unit>
+            <trans-unit id="label_email">
+                <source>label_email</source>
+                <target>E-mail</target>
+            </trans-unit>
+            <trans-unit id="title_change_password">
+                <source>title_change_password</source>
+                <target>Change password</target>
+            </trans-unit>
+            <trans-unit id="new_password">
+                <source>new_password</source>
+                <target>New password</target>
+            </trans-unit>
+            <trans-unit id="tag_list">
+                <source>tag_list</source>
+                <target>Tag list</target>
+            </trans-unit>
+            <trans-unit id="add_comment">
+                <source>add_comment</source>
+                <target>Add comment</target>
             </trans-unit>
         </body>
     </file>
