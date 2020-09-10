@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200910190907 extends AbstractMigration
+final class Version20200910192808 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -21,13 +21,13 @@ final class Version20200910190907 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE users CHANGE roles roles JSON NOT NULL');
-        $this->addSql('ALTER TABLE users_data ADD comment LONGTEXT DEFAULT NULL, CHANGE firstname firstname VARCHAR(45) DEFAULT NULL, CHANGE lastname lastname VARCHAR(45) DEFAULT NULL');
+        $this->addSql('ALTER TABLE users_data CHANGE comment_id comment_id INT DEFAULT NULL, CHANGE firstname firstname VARCHAR(45) DEFAULT NULL, CHANGE lastname lastname VARCHAR(45) DEFAULT NULL');
     }
 
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE users CHANGE roles roles LONGTEXT CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_bin`');
-        $this->addSql('ALTER TABLE users_data DROP comment, CHANGE firstname firstname VARCHAR(45) CHARACTER SET utf8mb4 DEFAULT \'NULL\' COLLATE `utf8mb4_unicode_ci`, CHANGE lastname lastname VARCHAR(45) CHARACTER SET utf8mb4 DEFAULT \'NULL\' COLLATE `utf8mb4_unicode_ci`');
+        $this->addSql('ALTER TABLE users_data CHANGE comment_id comment_id INT NOT NULL, CHANGE firstname firstname VARCHAR(45) CHARACTER SET utf8mb4 DEFAULT \'NULL\' COLLATE `utf8mb4_unicode_ci`, CHANGE lastname lastname VARCHAR(45) CHARACTER SET utf8mb4 DEFAULT \'NULL\' COLLATE `utf8mb4_unicode_ci`');
     }
 }

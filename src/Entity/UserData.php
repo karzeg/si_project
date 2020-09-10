@@ -56,7 +56,8 @@ class UserData
     private $lastname;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\ManyToOne(targetEntity=Comment::class, inversedBy="userData")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $comment;
 
@@ -110,12 +111,19 @@ class UserData
         $this->lastname = $lastname;
     }
 
-    public function getComment(): ?string
+    /**
+     * @return Comment|null
+     */
+    public function getComment(): ?Comment
     {
         return $this->comment;
     }
 
-    public function setComment(?string $comment): self
+    /**
+     * @param Comment|null $comment
+     * @return $this
+     */
+    public function setComment(?Comment $comment): self
     {
         $this->comment = $comment;
 

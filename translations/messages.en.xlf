@@ -86,9 +86,13 @@
                 <source>message_updated_successfully</source>
                 <target>Updated</target>
             </trans-unit>
+            <trans-unit id="message_created_successfully">
+                <source>message_created_successfully</source>
+                <target>Created</target>
+            </trans-unit>
             <trans-unit id="message_category_contains_tasks">
                 <source>message_category_contains_tasks</source>
-                <target>Category contains elements</target>
+                <target>Contains elements</target>
             </trans-unit>
             <trans-unit id="message_password_changed_successfully">
                 <source>message_password_changed_successfully</source>
@@ -101,6 +105,10 @@
             <trans-unit id="message_registered_successfully">
                 <source>message_registered_successfully</source>
                 <target>Registered</target>
+            </trans-unit>
+            <trans-unit id="comment_created_successfully">
+                <source>comment_created_successfully</source>
+                <target>Comment added</target>
             </trans-unit>
             <trans-unit id="title_book_details">
                 <source>title_book_details</source>

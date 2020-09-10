@@ -1,20 +1,10 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}
-    {{ 'book_edit'|trans({'%id%': book.id|default('')}) }}
-{% endblock %}
-
-{% block body %}
-    <h1>{{ 'book_edit'|trans({'%id%': book.id|default('')}) }}</h1>
-    {{ form_start(form, { method: 'PUT', action: url('book_edit', {id: book.id}) }) }}
-    {{ form_widget(form) }}
-    <div class="form-group row float-sm-right">
-        <input type="submit" value="{{ 'action_save'|trans }}" class="btn btn-info" />
-    </div>
-    <div class="form-group row float-sm-left">
-        <a href="{{ url('book_index') }}" class="btn btn-info">
-            {{ 'action_back_to_list'|trans }}
-        </a>
-    </div>
-    {{ form_end(form) }}
-{% endblock %}
+{% include 'default/_form.html.twig' with {
+    page_title: 'book_edit',
+    page_title_param: {'%id%': book.id},
+    attr: {
+        method: 'PUT',
+        action: url('book_edit', {'id': book.id}),
+    },
+    form: form,
+    back_to_list_path: 'book_index',
+} %}

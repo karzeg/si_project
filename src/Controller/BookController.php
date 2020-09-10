@@ -104,6 +104,8 @@ class BookController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $bookRepository->save($book);
 
+            $this->addFlash('success', 'message_created_successfully');
+
             return $this->redirectToRoute('book_index');
         }
 

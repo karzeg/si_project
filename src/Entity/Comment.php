@@ -6,6 +6,8 @@ namespace App\Entity;
 
 use App\Repository\CommentRepository;
 use App\Entity\Book;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -39,6 +41,19 @@ class Comment
      * @ORM\JoinColumn(nullable=false)
      */
     private $book;
+
+    /**
+     * @ORM\OneToMany(targetEntity=UserData::class, mappedBy="comment")
+     */
+    private $userData;
+
+    /**
+     * Comment constructor.
+     */
+    public function __construct()
+    {
+        $this->userData = new ArrayCollection();
+    }
 
     /**
      * Getter for id
@@ -86,6 +101,45 @@ class Comment
     public function setBook(?Book $book): self
     {
         $this->book = $book;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserData[]
+     */
+    public function getUserData(): Collection
+    {
+        return $this->userData;
+    }
+
+    /**
+     * @param UserData $userData
+     * @return $this
+     */
+    public function addUserData(UserData $userData): self
+    {
+        if (!$this->userData->contains($userData)) {
+            $this->userData[] = $userData;
+            $userData->setComment($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param UserData $userData
+     * @return $this
+     */
+    public function removeUserData(UserData $userData): self
+    {
+        if ($this->userData->contains($userData)) {
+            $this->userData->removeElement($userData);
+            // set the owning side to null (unless already changed)
+            if ($userData->getComment() === $this) {
+                $userData->setComment(null);
+            }
+        }
 
         return $this;
     }

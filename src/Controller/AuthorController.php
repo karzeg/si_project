@@ -103,6 +103,8 @@ class AuthorController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $authorRepository->save($author);
 
+            $this->addFlash('success', 'message_created_successfully');
+
             return $this->redirectToRoute('author_index');
         }
 

@@ -1,20 +1,11 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}
-    {{ 'author_delete'|trans({'%id%': book.id|default('')}) }}
-{% endblock %}
-
-{% block body %}
-    <h1>{{ 'author_delete'|trans({'%id%': book.id|default('')}) }}</h1>
-    {{ form_start(form, { method: 'DELETE', action: url('author_delete', {id: author.id}) }) }}
-    {{ form_widget(form) }}
-    <div class="form-group row float-sm-right">
-        <input type="submit" value="{{ 'action_delete'|trans }}" class="btn btn-info" />
-    </div>
-    <div class="form-group row float-sm-left">
-        <a href="{{ url('author_index') }}" class="btn btn-info">
-            {{ 'action_back_to_list'|trans }}
-        </a>
-    </div>
-    {{ form_end(form) }}
-{% endblock %}
+{% include 'default/_form.html.twig' with {
+    page_title: 'author_delete',
+    page_title_param: {'%id%': author.id},
+    attr: {
+        method: 'DELETE',
+        action: url('author_delete', {'id': author.id}),
+    },
+    form: form,
+    submit_label: 'action_delete'|trans,
+    back_to_list_path: 'author_index',
+} %}
