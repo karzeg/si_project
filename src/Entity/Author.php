@@ -39,6 +39,10 @@ class Author
      *     type="string",
      *     length=100
      *)
+     * @Assert\Length(
+     *     min="3",
+     *     max="100",
+     * )
      */
     private $name;
 

@@ -39,6 +39,10 @@ class Book
     *     type="string",
     *     length=255
     *)
+     * @Assert\Length(
+     *     min="3",
+     *     max="255",
+     * )
     */
     private $title;
 
@@ -51,6 +55,10 @@ class Book
     *     type="string",
     *     length=255
     *)
+     * @Assert\Length(
+     *     min="3",
+     *     max="255",
+     * )
     */
     private $description;
 
